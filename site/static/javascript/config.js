@@ -1,0 +1,1 @@
+var SubDomain = 'aminsaddiquidawakhana'; var SiteID = 'A893D2AC-1741-4984-8545-63329200C04B'; var host = 'https://api.eraconnect.net';
