@@ -1,0 +1,132 @@
+{{ define "main" }}
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>  
+
+<div class="shop_page">
+    <!-- Vendor dashboard section -->
+    <section class="ec-page-content ec-vendor-dashboard section-space-p">
+        <div class="container">
+            <div class="row">
+                <!-- Sidebar Area Start -->
+                <div class="ec-shop-leftside ec-vendor-sidebar col-lg-3 col-md-12">
+                    <div class="ec-sidebar-wrap">
+                        <!-- Sidebar Category Block -->
+                        <div class="ec-sidebar-block">
+                            <div class="ec-vendor-block">
+                                <div class="ec-vendor-block-bg"></div>
+                                <div class="ec-vendor-block-detail text-center">
+                                    <span class="v-img">
+                                        <img class="vvv-img" src="{{ site.Params.invoice | absURL }}" alt="vendor image">
+                                    </span>
+                                   
+                                    <h5>Last order details</h5>
+                                </div>
+                                <div class="ec-vendor-block-items">
+                                    <br>
+                                   <span id="fullname"></span><br>
+                                   <span id="email"></span><br>
+                                   <span id="phone"></span><br>
+                                   <span id="city"></span><br>
+                                   <span id="baddress"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ec-shop-rightside col-lg-9 col-md-12">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6">
+                            <div class="ec-vendor-dashboard-sort-card color-blue">
+                                <h5>Product(s)</h5>
+                                <h3 id="productcount">0</h3>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="ec-vendor-dashboard-sort-card color-pink">
+                                <h5>Order(s)</h5>
+                                <h3 id="ordercounts">0</h3>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="ec-vendor-dashboard-sort-card color-green">
+                                <h5>Delivered</h5>
+                                <h3 id="deliveredcounts">0</h3>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="ec-vendor-dashboard-sort-card color-orange">
+                                <h5>Spent</h5>
+                                <h3 id="spentcounts">0</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ec-vendor-dashboard-card space-bottom-30">
+                        <div class="ec-vendor-card-header">
+                            <h5>Order list</h5>
+                            <div class="ec-header-btn">
+                                <a class="btn btn-lg btn-secondary" href="#o" onclick="showallorder()">View All</a>
+                            </div>
+                        </div>
+                        <div class="ec-vendor-card-body">
+                            <div class="ec-vendor-card-table">
+                                <table class="table ec-table" style="white-space: nowrap;">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Invoice #</th>
+                                            <th scope="col">City</th>
+                                            <th scope="col">Status</th>
+                                            <th scope="col">Order date</th>
+                                            <th scope="col">Total</th>
+                                            <th scope="col">Control</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="productorder">
+                                       
+                                        <tr>
+                                            <td colspan="6" class="text-center"><img src="https://controllers.eralive.net/images/dashboard.jpeg" style="height: 300px;"/><p><b>You Have Not Placed Any Order Yet</b><br>Looks like you haven't made any choices<br>
+                                            <br><a href="/" class="btn btn-secondary">Shop Now</a>
+                                            </p></td>
+                                        
+                                          </tr>
+                                       
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+            
+                 
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- End Vendor dashboard section -->
+</div>
+
+
+
+
+
+
+
+<style>
+    .v-img{
+        background-color: lightgray;
+        width: 90% !important;
+        border-radius: 20% !important;
+        height:90px !important;
+    }
+    .vvv-img{
+        width: auto !important;
+        border-radius: 20% !important;
+        height:70px !important;
+    }
+</style>
+
+<script>
+    var pagenames = "dashboard";
+</script>
+<script src="https://controllers.eralive.net/v1/Controllers/getlastaddress.js"></script>
+{{ end }}

@@ -1,0 +1,246 @@
+{{ define "main" }}
+
+<!-- <br> -->
+<script>
+  var pagesnames = 'product';
+  {{ if .Params.Variants }}
+  var productids= null;
+  var setsizeprice= null;
+  var setsize= null;
+  {{else}}
+  var productids= "{{ .Params.ProductID }}";
+  var setsizeprice= "{{ .Params.Price }}";
+  var setsize= null;
+  {{ end }}
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://controllers.eralive.net/v1/Controllers/productController.js"></script>
+
+    <!-- Sart Single product -->
+    <section class="ec-page-content section-space-p">
+      <div class="container">
+          <div class="row">
+              <div class="ec-pro-rightside ec-common-rightside col-lg-12 col-md-12">
+
+                  <!-- Single product content Start -->
+                  <div class="single-pro-block">
+                      <div class="single-pro-inner">
+                          <div class="row">
+                              <div class="single-pro-img single-pro-img-no-sidebar">
+                                  <div class="single-product-scroll">
+                                    <span class="ec-360-lbl" data-link-action="quickview" id="newproductid" style="display: none; height:20px;color: var(--font)!important;opacity: unset!important;cursor: unset;border-radius: 0 15px 15px 0;background-color: var(--background)!important;font-weight: 700;"><script>
+                                            var date = new Date({{ .Params.date }})
+                                            if(moment().diff(date,'days') < 4){
+                                                $('#newproductid').show();
+                                                document.write('new')
+                                            }
+                                            </script></span>
+                                      <div class="single-product-cover">
+                                        {{ range .Params.Images }}
+                                          <div class="single-slide zoom-image-hover" style="height: 300px;">
+                                              <img class="img-responsive img-fluid mx-auto" src="{{ .image | absURL }}" alt="{{ .Title }}">
+                                          </div>
+                                          {{ end }}
+                                        
+                                      </div>
+                                      <div class="single-nav-thumb" style="height: 100px;">
+                                        {{ range .Params.Images }}
+                                          <div class="single-slide">
+                                              <img class="img-responsive" style="height: 100px;" src="{{ .image | absURL }}" alt="{{ .Title }}">
+                                          </div>
+                                          {{ end }}
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="single-pro-desc single-pro-desc-no-sidebar">
+                                  <div class="single-pro-content">
+                                      <h5 class="ec-single-title"><script>document.write(decodeURIComponent('{{ .Title }}').replaceAll('+',' '))</script></h5>
+                                      <p>Category: <script>document.write(decodeURIComponent('{{ .Params.Category }}').replaceAll('+',' '))</script></p>
+                                      <div class="ec-single-desc"><script>document.write(decodeURIComponent('{{ .Params.ShortDescription | markdownify }}').replaceAll('+',' '))</script></div>
+                                      {{ if .Params.Variants }}
+                                      <div class="ec-pro-variation">
+                                        <div class="ec-pro-variation-inner ec-pro-variation-size">
+                                            <span>SIZE</span>
+                                            <div class="ec-pro-variation-content">
+                                                <ul data-productidsold="{{ .Params.ProductID }}">
+                                                    {{ range .Params.Variants }}
+
+                                                    <li onclick="s_changePrice(this,'{{ .variant.ProductVariantID}}','{{ .variant.RetailPrice}}','{{ .variant.priceBefore}}','{{ .variant.Size }}')"><span data-price="">{{ .variant.Size }}</span></li>
+                                                    
+                                                    {{ end }}
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{ end }}
+                                      <div class="ec-single-price-stoke">
+                                          <div class="ec-single-price">
+                                            <span class="new-price">PKR <span id="{{ .Params.ProductID }}"><script>document.write(new Intl.NumberFormat().format(parseFloat('{{ .Params.Price }}')))</script></span></span>
+                                              {{ if .Params.PriceBefore }}
+                                              <span class="old-price" style="text-decoration:line-through">PKR <span id="{{ .Params.ProductID }}{{ .Params.ProductID }}"><script>document.write(new Intl.NumberFormat().format(parseFloat('{{ .Params.PriceBefore }}')))</script></span></span>
+                                              {{ end }}
+                                          </div>
+                                          
+                                      </div>
+   
+                                      <div class="ec-single-qty">
+                                          <!-- <div class="qty-plus-minus">
+                                              <input class="qty-input" type="text" name="ec_qtybtn" value="1" />
+                                          </div> -->
+                                          
+                                        
+                                          {{ if .Params.Variants }}
+                                          <div class="ec-single-cart ">
+                                              <button class="btn btn-secondary" onclick="checkpriceset(productids,{{ .Title }},{{ .Params.Description }},setsizeprice
+                                              ,{{ range first 1 .Params.Images }}{{ .image | absURL }}{{ end }},1,'{{ .Params.ProductID }}',setsize);">Add To Cart</button>
+                                          </div>
+                                          {{else}} 
+                                          <div class="ec-single-cart ">
+                                            <button class="btn btn-secondary" onclick="Check(productids,{{ .Title }},{{ .Params.Description }},setsizeprice
+                                            ,{{ range first 1 .Params.Images }}{{ .image | absURL }}{{ end }},1,'{{ .Params.ProductID }}','')">Add To Cart</button>
+                                            </div> 
+                                          {{end}}  
+                                          <div class="ec-single-quickview">
+                                              <a href="#" class="ec-btn-group btn btn-secondary whatsappcheck" id="whatsapp{{ .Params.ProductID }}" onclick="whatsapp('{{ .Params.ProductID }}','{{ .Title }}')" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true" style="font-size: 20px;"></i></a>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <!--Single product content End -->
+                  <div class="ec-single-pro-tab">
+                    <div class="ec-single-pro-tab-wrapper">
+                    
+                        <div class="tab-content  ec-single-pro-tab-content">
+                            <div id="ec-spt-nav-details" class="tab-pane fade show active">
+                                <div class="ec-single-pro-tab-desc">
+                                    <h2>Description</h2><br>
+                                    <script>document.write(decodeURIComponent('{{ .Params.longdescription }}').replaceAll('+',' '))</script>
+                                </div>
+                            </div>
+                        
+
+                         
+                        </div>
+                    </div>
+                </div>
+              </div>
+              {{$p_id :=.Params.ProductID }}
+          </div>
+      </div>
+  </section>
+  <!-- End Single product -->
+    <!-- Related Product Start -->
+    <section class="section ec-releted-product section-space-p">
+        <div class="container">
+            <div class="row" id="relatedp" style="display: none;">
+                <div class="col-md-12 text-center">
+                    <div class="section-title">
+                        <h2 class="ec-bg-title">Related products</h2>
+                        <h2 class="ec-title">Related products</h2>
+                        <!-- <p class="sub-title">Browse The Collection of Top Products</p> -->
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-minus-b-30">
+                {{ range first 4 (where site.RegularPages "Description" .Params.Category) }}
+                {{if eq $p_id .Params.ProductID}}
+
+                {{else}}
+                <script>
+                    $('#relatedp').show();
+                </script>
+                <!-- Related Product Content -->
+                <div class="col-lg-3 col-md-3 col-sm-3 pricesrangeclass" data-category="{{ .Params.Category }}" data-price="{{ .Params.Price }}">
+                    <!-- START single card -->
+                    <div class="ec-product-lsc">
+                        <div class="ec-product-image">
+                            <a href="{{ .Permalink }}">
+                                {{ range first 1 .Params.Images }}
+                                <img  src="{{ .image | absURL }}" id="he-123" class="img-center img-fluid mx-auto" alt="">
+                                {{ end }}
+                            </a>
+                            <script>
+                                var date = new Date({{ .Params.date }})
+                                if(moment().diff(date,'days') < 4){
+                                    document.write('<span class="ec-product-ribbon">new</span>')
+                                }
+                            </script>
+                        </div>
+                        <div class="ec-product-body">
+                            <p class="ec-description">Category <span><script>document.write(decodeURIComponent('{{ .Params.Category }}').replaceAll('+',' '))</script></span></p>
+                            <h3 class="ec-title"><a href="{{ .Permalink }}"><script>document.write(decodeURIComponent('{{ .Title }}').replaceAll('+',' '))</script></a></h3>
+                            <div class="ec-el-price">
+                                
+                                <p class="ec-o-price">PKR <span id="{{ .Params.ProductID }}"><script>document.write(new Intl.NumberFormat().format(parseFloat('{{ .Params.Price }}')))</script></span></p>
+                                
+                                <p style="text-decoration:line-through">
+                                    {{ if .Params.PriceBefore }}
+                                    PKR <span id="{{ .Params.ProductID }}{{ .Params.ProductID }}"><script>document.write(new Intl.NumberFormat().format(parseFloat('{{ .Params.PriceBefore }}')))</script></span>
+                                    
+                                    {{ end }}
+                                </p>
+                            </div>
+                            <span class="rangeprice" hidden>{{ .Params.Price }}</span>
+                            {{ if .Params.Variants }}
+                            <br>
+
+                            <div class="ec-pro-option">
+                               
+                                <div class="ec-pro-size">
+                                    <span class="ec-pro-opt-label">Size</span>
+                                    <ul class="ec-opt-size" data-productidsold="{{ .Params.ProductID }}">
+                                        {{ range .Params.Variants }}
+                                        <li onmouseover="changePrice(this,'{{ .variant.RetailPrice}}','{{ .variant.priceBefore}}')" data-Sizevariant="{{ .variant.Size}}" data-ProductVariantID="{{ .variant.ProductVariantID}}" data-retailprice="{{ .variant.RetailPrice}}"><a href="#" class="ec-opt-sz">{{ .variant.Size }}</a></li>
+                                        {{ end }}
+                                    </ul>
+                                </div>
+                            </div>
+                            <br>
+                            {{else}}
+                            <br>
+                            <br>
+                            <br>
+                            {{ end }}
+                            <div class="ec-link-btn">
+                                {{ if .Params.Variants }}
+                                <a class=" ec-add-to-cart" href="#a" title="Add To Cart" onclick="tempFunction(this,{{ .Title }},{{ .Params.Description }}
+                                ,{{ range first 1 .Params.Images }}{{ .image | absURL }}{{ end }},1,'{{ .Params.ProductID }}');" title="PKR {{ .Params.Price }} "><i class="fa fa-cart-plus" aria-hidden="true"></i> <span id="cartipda">cart</span></a>
+                                {{else}}
+                                <a class=" ec-add-to-cart" href="#a" title="Add To Cart" onclick="Check({{ .Params.ProductID }},{{ .Title }},{{ .Params.Description }},{{ .Params.Price }}
+                                ,{{ range first 1 .Params.Images }}{{ .image | absURL }}{{ end }},1,'{{ .Params.ProductID }}',''),''" title="PKR {{ .Params.Price }} "><i class="fa fa-cart-plus" aria-hidden="true"></i> <span id="cartipda">cart</span></a>
+                   
+                                {{ end }}
+                                <div class="ec-link-icon">
+                                    <a href="{{ .Permalink }}"><img src="https://v1.eralive.net/assets/images/icons/quickview.svg"
+                                        class="svg_img header_svg pro_svg" alt="wishlist" /></a>
+                                    <a id="whatsapp{{ .Params.ProductID }}" class="whatsappcheck" title="Whatsapp" onclick="whatsapp('{{ .Params.ProductID }}','{{ .Title }}')" target="_blank" data-tip="Compare"><i class="fa fa-whatsapp" aria-hidden="true" style="font-size: 20px;"></i></a>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- START single card -->
+                </div>
+               
+                {{ end }}
+                {{ end }}
+            </div>
+        </div>
+    </section>
+    <!-- Related Product end -->
+
+
+
+
+<style>
+  .img-fluid{
+    height: 100%;
+  }
+
+</style>
+<script src="https://controllers.eralive.net/v1/Controllers/sizeController.js"></script>
+
+{{ end }}

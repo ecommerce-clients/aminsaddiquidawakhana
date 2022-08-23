@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<title id="titlesnameallow">Invoice</title>
+
+		<!-- Favicon -->
+		<link rel="icon" href="\images\favicon.png" type="image/x-icon" />
+		<script src="/javascript/social_links.js"></script>
+		<!-- Invoice styling -->
+		<style>
+			body {
+				font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+				/* text-align: center; */
+				color: #777;
+			}
+
+			body h1 {
+				font-weight: 300;
+				margin-bottom: 0px;
+				padding-bottom: 0px;
+				color: #000;
+			}
+
+			body h3 {
+				font-weight: 300;
+				margin-top: 10px;
+				margin-bottom: 20px;
+				font-style: italic;
+				color: #555;
+			}
+
+			body a {
+				color: #06f;
+			}
+
+			.invoice-box {
+				max-width: 800px;
+				margin: auto;
+				padding: 30px;
+				border: 1px solid #eee;
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+				font-size: 16px;
+				line-height: 24px;
+				font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+				color: #555;
+			}
+
+			.invoice-box table {
+				width: 100%;
+				line-height: inherit;
+				text-align: left;
+				border-collapse: collapse;
+			}
+
+			.invoice-box table td {
+				padding: 5px;
+				vertical-align: top;
+			}
+
+			.invoice-box table tr td:nth-child(2) {
+				text-align: right;
+			}
+
+			.invoice-box table tr.top table td {
+				padding-bottom: 20px;
+			}
+
+			.invoice-box table tr.top table td.title {
+				font-size: 45px;
+				line-height: 45px;
+				color: #333;
+			}
+
+			.invoice-box table tr.information table td {
+				padding-bottom: 15px;
+			}
+
+			.invoice-box table tr.heading td {
+				background: #eee;
+				border-bottom: 1px solid #ddd;
+				font-weight: bold;
+			}
+			.heading1 td {
+				background: #eee;
+				border-bottom: 1px solid #ddd;
+				font-weight: bold;
+			}
+			.invoice-box table tr.details td {
+				padding-bottom: 20px;
+			}
+
+			.invoice-box table tr.item td {
+				border-bottom: 1px solid #eee;
+			}
+
+			.invoice-box table tr.item.last td {
+				border-bottom: none;
+			}
+
+			.invoice-box table tr.total td:nth-child(2) {
+				border-top: 2px solid #eee;
+				font-weight: bold;
+			}
+			#p-t-3{
+				padding-top: 12%;
+				}
+				#size-res{
+					width: 70%;margin-left: 30%;
+				}
+				#size-add-re{
+					width: 60%;
+				}
+				#title-size{
+					width:40%;
+				}
+			@media only screen and (max-width: 600px) {
+				.invoice-box table tr.top table td {
+					width: 100%;
+					display: block;
+					text-align: center;
+				}
+
+				.invoice-box table tr.information table td {
+					width: 100%;
+					display: block;
+					text-align: center;
+				}
+				#p-t-3{
+					padding-top:unset;
+				}
+				#size-res{
+					width: unset;margin-left: unset;
+				}
+				#size-add-re{
+					width: unset;
+				}
+				#title-size{
+					width:unset;
+				}
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="invoice-box">
+			<table>
+				<tr class="top">
+					<td colspan="3">
+						<table>
+							<tr>
+								<td id="title-size">
+									
+									<a href="{{ site.BaseURL }}"><img src="{{ site.Params.invoice | absURL }}" alt="Company logo" style="width: 120px" /></a>
+									<br>
+									<script>document.write('<span style="width: 60%;">'+decodeURIComponent(typeof Receipt_Header == 'undefined' ? null : Receipt_Header).replaceAll('+',' ').replaceAll(';','<br>')+'</span>')</script>
+									
+								</td>
+
+								<td id="p-t-3">
+									Invoice #: <span id="lblInvoice"></span><br />
+									Created: <span id="lblCreatedAt"></span><br />
+									Status: <span id="lblStatus"></span>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr class="information">
+					<td colspan="3">
+						<table>
+							<tr>
+								<td>
+									<span><b>BILLING DETAILS</b></span>
+									<br />
+								
+									Customer Name : <span id="Bill_Customer"></span><br />
+						<div id="size-add-re">Address : <span id="Bill_Address"></span></div>
+						City : <span id="Bill_City"></span><br />
+						Phone : <span id="Bill_Phone"></span><br>
+						Email : <span id="Bill_Email"></span>
+								</td>
+
+								<td class="Shipping">
+									<span><b>SHIPPING DETAILS</b></span>
+									<br />
+									Customer Name : <span id="Ship_Customer"></span><br />
+									<div id="size-res">Address : <span id="Ship_Address"></span></div>
+						City : <span id="Ship_City"></span>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			
+				<!-- <tr class="heading">
+					<td>Payment Method</td>
+                    
+					
+					<td colspan="2" id="PMethod"></td>
+				</tr>
+
+				<tr class="details">
+					<td>Delivery Charges</td>
+					
+					<td colspan="2"id="Charges"></td>
+				</tr> -->
+
+				<tr class="heading">
+					<td>Item</td>
+                    <td>Qty</td>
+					<td align="right">Price</td>
+				</tr>
+				<tbody id="tbody">
+
+				
+				</tbody>
+				
+				<tr class="details">
+					<td></td>
+                    <td></td>
+					<td ></td>
+				</tr>
+				<tr class="heading">
+					<td>Summary</td>
+                    
+					
+					<td colspan="2"></td>
+				</tr>
+				<tr class="item">
+
+					<td>PAYMENT METHOD</td>
+                    
+					
+				<td colspan="2" id="PMethod"></td>
+				</tr>
+
+				<tr class="item">
+					<td>SUBTOTAL</td>
+					
+					<td colspan="2" id="lblSubTotal">0</td>
+				</tr>
+				<tr class="item">
+					<td>DELIVERY CHARGES</td>
+					
+					<td colspan="2" id="lblCharges">0</td>
+				</tr>
+				<tr class="item">
+					<td>TOTAL</td>
+					
+					<td colspan="2" id="lblTotal">0</td>
+				</tr>
+			</table>
+
+			<script>document.write('<div><br><ul style="padding-left: 18px;"><span style="width: 60%;">'+decodeURIComponent(typeof Receipt_Footer == 'undefined' ? null : Receipt_Footer).replaceAll('+',' ').replaceAll(';','<li>')+'</ul></span>')</script>
+		</div>
+		<script>
+			var pagenames = "invoice"
+		</script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+		<script type="text/javascript" src="/javascript/config.js"></script>
+		<script type="text/javascript" src="https://controllers.eralive.net/plugins/jQuery/crypto-js.min.js"></script>
+		<script src="https://controllers.eralive.net/v1/Controllers/androidController.js"></script>
+		<script type="text/javascript" src="https://controllers.eralive.net/v1/routes/web.js"></script>
+		
+	</body>
+</html>

@@ -1,0 +1,193 @@
+{{ define "main" }}
+
+{{ partial "page-title.html" . }}
+<script>
+ $(document).ready(function () {
+    window.location.href = window.location.origin;
+
+ })
+</script>
+
+<!-- <br> -->
+<section class="section pt-0">
+  <div class="container">
+    <!-- <style>
+      .hide{
+        display:none;
+      }
+      .show{
+        display:block;
+      }
+      </style> -->
+    <style>
+      #myInput[type=text] {
+        width: 130px;
+        box-sizing: border-box;
+
+        border-radius: 4px;
+        font-size: 16px;
+
+        background-image: url('/images/searchicon.png');
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        padding: 12px 20px 12px 40px;
+        -webkit-transition: width 0.4s ease-in-out;
+        transition: width 0.4s ease-in-out;
+      }
+
+      #myInput[type=text]:focus {
+        width: 100%;
+      }
+    </style>
+    <!-- <a class="text-color">
+    <i class="fa fa-search  text-primary mr-2" aria-hidden="true" onclick="onButtonClick()" id="hide" style="width: 20px;height: 20px;font-size: 30px;"></i>
+  </a> -->
+    <!-- <br> -->
+    <input id="myInput" type="text" name="search" placeholder="Product search" class="hide form-control">
+
+    <br>
+    <br>
+    <div class="row" id="search">
+      {{ range .Data.Pages }}
+      <div class="col-lg-4 col-sm-6 mb-4">
+        <div class="card border-0 text-center">
+          <a href="{{ .Permalink }}">
+            {{ range first 1 .Params.Images }}
+            <script>document.write('<img src="{{ .image | absURL }}" alt="{{ .Title }}" class="card-img-top">')</script>
+            
+            {{ end }}
+          </a>
+          <div class="card-body">
+            <a href="{{ .Permalink }}" class="h4">{{ .Title }}</a>
+            <p>{{ .Params.Description }}</p>
+            <p class="mb-4">
+              {{ if .Params.PriceBefore }}
+              <s>PKR {{ .Params.PriceBefore }}</s>
+              {{ end }}
+              <span class="lead text-primary">PKR {{ .Params.Price }}</span>
+            </p>
+        
+                <button class="btn btn-sm btn-outline-primary" id="modalActivate"  data-toggle="modal" data-target="#exampleModalPreview" data-item-id="{{ .Params.ProductID }}"
+                data-item-name="{{ .Title }}" {{ range first 1 .Params.Images }} data-item-image="{{ .image | absURL }}"
+                {{ end }} data-item-price="{{ .Params.Price }}" id="add_to_cart" data-item-url="{{ .Permalink }}"
+                data-item-description="{{ .Description }}"
+                onclick="Check({{ .Params.ProductID }},{{ .Title }},{{ .Params.Description }},{{ .Params.Price }}
+                ,{{ range first 1 .Params.Images }}{{ .image | absURL }}{{ end }},1)" title=" {{ site.Params.currencySymbol }}{{ .Params.Price }} ">
+                Add to cart
+              </button>
+              <button class="btn btn-sm btn-outline-primary">
+                <i class="fa fa-whatsapp" aria-hidden="true" style="font-size: 20px;"></i>
+            </button>
+              
+            
+          </div>
+        </div>
+      </div>
+      <div>
+
+      </div>
+      {{ end }}
+
+    </div>
+  </div>
+</section>
+<script>
+  var toprice=0;
+  function Check(id, title, dec, price,img,qty) {
+
+  
+const oldItems = JSON.parse(localStorage.getItem('itemsArray')) || [];
+const idToUse = id;
+const existingItem = oldItems.find(({ id }) => id === idToUse);
+if (existingItem) {
+  Object.assign(existingItem, {
+    'name': title,
+    'quantity': existingItem.quantity + qty,
+    'price': price,
+    'dec': dec,
+    'img': img,
+  })
+} else {
+  const newItem = {
+    'id' : idToUse,
+    'name': title,
+    'quantity': qty,
+    'price': price,
+    'dec': dec,
+    'img': img,
+  };
+  oldItems.push(newItem);
+}
+
+localStorage.setItem('itemsArray', JSON.stringify(oldItems));
+items = localStorage.getItem("itemsArray");
+    json = JSON.parse(items);
+    var count =0;
+    toprice =0;
+    var student = '';
+    for (i = 0; i < json.length; i++) {
+      // console.log(json[i]);
+      count++;
+      student += '<tr>';
+                            student += '<td> <img src="'+json[i].img+'" style="width:50px;height:50px;" />' + '</td>';
+  
+                            student += '<td>' + 
+                              json[i].name + '</td>';
+  
+                            student += '<td>' + 
+                              json[i].dec + '</td>';
+  
+                              student += '<td>' + 
+                              '<input type="number" class="form-control text-center" value="'+json[i].quantity+'"></td>';
+                              
+
+                            student += '<td>' + 
+                              json[i].price * json[i].quantity+ '</td>';
+
+                              var price = parseInt(json[i].price * json[i].quantity)
+                              toprice = parseInt(toprice+price);
+
+
+
+                             student += '<td>' + 
+                              '<button class="btn btn-danger btn-sm" onclick="add_delete('+
+                              "'"+json[i].id+"'"
+                              +',this)"><i class="fa fa-trash-o"></i></button></td>';
+                              
+                              $("#data_cart_footer tr").remove(); 
+                              $('#data_cart_footer').append(student);
+
+    };
+    fottor = '<tfoot><tr class="visible-xs"><td class="text-center"><strong>Total '+toprice+'</strong></td></tr><tr><td><a href="#" class="btn btn-warning"  class="close " data-dismiss="modal" aria-label="Close"><i class="fa fa-angle-left"></i> Continue Shopping</a></td><td colspan="2" class="hidden-xs"></td><td class="hidden-xs text-center"><strong>Total '+toprice+'</strong></td><td><a href="#" class="btn btn-success btn-block" onClick="checkoutbtc();">Checkout <i class="fa fa-angle-right"></i></a></td></tr></tfoot>';
+
+    $('#data_cart_footer').append(fottor);
+    $("#p_count").text(count);
+  }
+</script>
+
+
+
+
+
+<script>
+
+
+  $(document).ready(function () {
+    $("#myInput").on("keyup", function () {
+      var value = $(this).val().toLowerCase();
+      $("#search div").filter(function () {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  });
+
+</script>
+<script>
+  function onButtonClick() {
+    document.getElementById('myInput').className = "show form-control";
+    document.getElementById('hide').className = "hide";
+  }
+</script>
+{{ partial "cta.html" . }}
+
+{{ end }}

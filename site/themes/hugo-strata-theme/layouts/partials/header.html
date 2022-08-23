@@ -1,0 +1,197 @@
+
+    <!-- End Google Tag Manager (noscript) -->
+    <div id="bodytag"></div>
+<script>
+    if(tagmanager != '')
+    {
+     $('#bodytag').append('<noscript><iframe src="https://www.googletagmanager.com/ns.html?id='+tagmanager+'" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>');
+    }
+</script>
+<div id="ec-overlay"><span class="loader_img"></span></div>
+  
+  <!-- Header start  -->
+  <header class="ec-header">
+    <!--Ec Header Top Start -->
+    <!--Ec Header Top Start -->
+    <div class="header-top d-lg-none">
+      <div class="container">
+          <div class="row" id="responsicecustom">
+            <div class="col-6">
+                <div class="header-logo">
+                    <a href="{{ site.BaseURL }}"><img src="{{ site.Params.logo | absURL }}" alt="Site Logo" /><img
+                            class="dark-logo" src="{{ site.Params.logo | absURL }}" alt="Site Logo"
+                            style="display: none;" /></a>
+                </div>
+            </div>
+              <div class="col-6 d-lg-none ">
+                  <div class="ec-header-bottons">
+                      <!-- Header User Start -->
+
+                      <div class="ec-header-user dropdown">
+                        <button class="dropdown-toggle logouttrue" data-bs-toggle="dropdown"><img
+                                src="https://v1.eralive.net/assets/images/icons/user.svg" class="svg_img header_svg" alt="" /></button>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a class="dropdown-item noneregister" href="/register">Register</a></li>
+                            <li><a class="dropdown-item nonelogin" href="/login">Login</a></li>
+                            
+                        </ul>
+                    </div>
+                      
+                      <!-- Header User End -->
+             
+                      <!-- Header Cart Start -->
+                      <a href="#ec-side-cart" id="responsivelogo" class="ec-header-btn ec-side-toggle">
+                          <div class="header-icon"><img src="https://v1.eralive.net/assets/images/icons/cart.svg" class="svg_img header_svg" alt=""></div>
+                          <span class="ec-header-count cart-count-lable p_count">0</span>
+                      </a>
+                      <!-- Header Cart End -->
+                      <!-- Header menu Start -->
+<!-- Header Cart Start -->
+<a href="#ec-mobile-menu" style="left: unset;" class="ec-header-btn ec-side-toggle">
+    <div class="header-icon"><img src="https://v1.eralive.net/assets/images/icons/menu.svg" class="svg_img header_svg" alt=""></div>
+   
+</a>
+<!-- Header Cart End -->
+
+
+
+
+                
+                      <!-- Header menu End -->
+                  </div>
+              </div>
+              <!-- Header Top responsive Action -->
+          </div>
+      </div>
+  </div>
+  <!-- Ec Header Top  End -->
+    <!-- Ec Header Top  End -->
+    <!-- Ec Header Bottom  Start -->
+    <div class="ec-header-bottom d-none d-lg-block">
+        <div class="container position-relative">
+            <div class="row">
+                <div class="ec-flex">
+                    <!-- Ec Header Logo Start -->
+                    <div class="align-self-center">
+                        <div class="header-logo">
+                            <a href="{{ site.BaseURL }}"><img src="{{ site.Params.logo | absURL }}" style="height:34px;" height="34" alt="{{ site.Title }}"/></a>
+                        </div>
+                    </div>
+                    <!-- Ec Header Logo End -->
+
+                    <!-- Ec Header Search Start -->
+                    <div class="align-self-center">
+                        <div class="header-search">
+                            
+                        </div>
+                    </div>
+                    <!-- Ec Header Search End -->
+
+                    <!-- Ec Header Button Start -->
+                    <div class="align-self-center">
+                        <div class="ec-header-bottons">
+
+                            <!-- Header User Start -->
+                           
+                            <div class="ec-header-user dropdown">
+                                <button class="dropdown-toggle logouttrue" data-bs-toggle="dropdown"><img
+                                        src="https://v1.eralive.net/assets/images/icons/user.svg" class="svg_img header_svg" alt="" /></button>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a class="dropdown-item noneregister" href="/register">Register</a></li>
+                                    <li><a class="dropdown-item nonelogin" href="/login">Login</a></li>
+                                    <!-- <li><a class="dropdown-item nonelogout" onclick="LogoutUser()">Logout</a></li> -->
+                                </ul>
+                            </div>
+                            <!-- Header User End -->
+                          
+                            <!-- Header Cart Start -->
+                            <a href="#ec-side-cart" class="ec-header-btn ec-side-toggle">
+                                <div class="header-icon"><img src="https://v1.eralive.net/assets/images/icons/cart.svg"
+                                        class="svg_img header_svg" alt="" /></div>
+                                <span class="ec-header-count cart-count-lable p_count">0</span>
+                            </a>
+                            <!-- Header Cart End -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Ec Header Button End -->
+    <!-- Header responsive Bottom  Start -->
+    <!-- <div class="ec-header-bottom d-lg-none">
+        <div class="container position-relative">
+            <div class="row "> -->
+
+                <!-- Ec Header Logo Start -->
+                
+                <!-- Ec Header Logo End -->
+                <!-- Ec Header Search Start -->
+                <!-- <div class="col">
+                    <div class="header-search">
+                        <form class="ec-btn-group-form" action="#">
+                            <input class="form-control myInput-hide myInput" placeholder="Enter Your Product Name..." type="text" style="display: none;">
+                            <button class="submit myInput-hide" type="submit" style="display: none;"><img src="https://v1.eralive.net/assets/images/icons/search.svg"
+                                    class="svg_img header_svg" alt="icon" /></button>
+                        </form>
+                    </div>
+                </div> -->
+                <!-- Ec Header Search End -->
+            <!-- </div>
+        </div>
+    </div> -->
+    <!-- Header responsive Bottom  End -->
+    <!-- EC Main Menu Start -->
+    <div id="ec-main-menu-desk" class="d-none d-lg-block sticky-nav">
+        <div class="container position-relative">
+            <div class="row">
+                <div class="col-md-12 align-self-center">
+                    <div class="ec-main-menu">
+                        <ul>
+                            <li><a href="{{ site.BaseURL }}">{{ with site.Params.Home }} {{ . }} {{ end }}</a></li>
+                            {{ range site.Menus.main }}
+                            <li id="none{{ .Name }}" class="none{{ .Name }}"><a href="{{ .URL | absURL }}">{{ .Name }}</a></li>
+                            {{ end }}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Ec Main Menu End -->
+    <!-- ekka Mobile Menu Start -->
+    <div id="ec-mobile-menu" class="ec-side-cart ec-mobile-menu">
+        <div class="ec-menu-title">
+            <span class="menu_title">My Menu</span>
+            <button class="ec-close">×</button>
+        </div>
+        <div class="ec-menu-inner">
+            <div class="ec-menu-content">
+                <ul>
+                    <li><a href="{{ site.BaseURL }}">{{ with site.Params.Home }} {{ . }} {{ end }}</a></li>
+                    {{ range site.Menus.main }}
+                            <li id="none{{ .Name }}" class="none{{ .Name }}"><a href="{{ .URL | absURL }}">{{ .Name }}</a></li>
+                            {{ end }}
+                </ul>
+            </div>
+           
+        </div>
+    </div>
+    <!-- ekka mobile Menu End -->
+</header>
+<!-- Header End  -->
+
+
+
+
+<style>
+        .titlealign {
+        vertical-align: middle;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+</style>
+
+<body class="d-flex flex-column vh-100">
+{{ "<!-- /navigation -->" | safeHTML }}

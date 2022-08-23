@@ -1,0 +1,48 @@
+{{ define "main" }}
+
+{{ partial "page-title.html" . }}
+
+{{ if site.Data.contact.contact.enable }}
+<section class="ec-page-content section-space-p">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-5 col-sm-6">
+        
+        <h3 class="mb-4">About us</h3>
+        <p id="aboutdetails"></p>
+      
+
+        <ul class="list-unstyled">
+          <li class="mb-3 mb-3 d-none color-black parmobile" ></li>
+          <li class="mb-3 d-none color-black paremail"></li>
+          <li class="mb-3 d-none color-black parlocation"></li>
+        </ul>
+      </div>
+      <!-- offset-lg-1 -->
+      <div class="col-lg-2 col-sm-6"></div>
+
+      <div class="col-lg-5">
+        <h3 class="
+        mb-4">Contact us</h3>
+        <form action="#">
+          <input type="text" class="form-control mb-2" id="username" name="name" placeholder="Your Name">
+          <p id="errornames" style="color: red;"></p>
+          <input type="text" class="form-control mb-2" id="useremail" name="email" placeholder="Your Email">
+          <p id="erroremils" style="color: red;"></p>
+          <textarea name="message" id="message" class="form-control mb-2" placeholder="Your Message"></textarea>
+          <p id="errormsges" style="color: red;"></p>
+          <button type="button" onclick="sendEmail()" id="sendmaildone"  value="send" class="btn btn-block btn-primary rounded">Send Now</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  var pagenames = "contact";
+</script>
+{{ end }}
+
+
+
+{{ end }}

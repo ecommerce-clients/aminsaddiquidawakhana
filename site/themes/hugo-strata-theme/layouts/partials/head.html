@@ -1,0 +1,48 @@
+<head>
+  <meta charset="UTF-8">
+  <title id="titlesnameallow">{{ .Title }}</title>
+
+  <meta property="og:title" content="{{ .Title }}" />
+  <meta property="og:description" content="Price: {{ .Params.price }}" />
+  <meta property="og:image" content="{{ .Params.thumnailproduct | absURL }}" />
+  {{ "<!-- Mobile Responsive Meta -->" | safeHTML }}
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  {{ with site.Params.author }}<meta name="author" content="{{ . }}">{{ end }}
+  {{ hugo.Generator }}
+
+
+
+  {{ "<!-- Plugins -->" | safeHTML }}
+  {{ range site.Params.plugins.css }}
+  <link rel="stylesheet" href="{{ .link | absURL }}">
+  {{ end }}
+
+
+  <meta name="keywords" content="{{ .Params.metatag }}">
+
+  <script src="/javascript/social_links.js"></script>
+  {{ "<!-- Favicon -->" | safeHTML }}
+  <link rel="shortcut icon" href="\images\favicon.png" type="image/x-icon">
+  <link rel="icon" href="\images\favicon.png" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <!-- include the widget -->
+   <script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script> 
+  
+   <link href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/toasty.css" rel="stylesheet" />
+   <link href="/css/style.min.css" rel="stylesheet" />
+
+   <script src="https://controllers.eralive.net/v1/Controllers/tagmanager.js"></script>
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-app.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
+ 
+<!--  -->
+<!-- <style>
+  .toast:not(.showing):not(.show){
+    opacity: unset !important;
+  }
+</style> -->
+  </head>

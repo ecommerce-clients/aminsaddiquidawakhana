@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="Ljkj3ISBTcKIysa2bgR9KWK7chTcmX49gXuQ6Zat">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <link href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/toasty.css" rel="stylesheet" />
+
+</head>
+
+<body>
+
+    <div class="card">
+        <div class="card-top border-bottom text-center"> <a href="/"> Back to shop</a> <span id="logo">Billing</span>
+        </div>
+        <div class="card-body">
+            <!-- <div class="row upper"> <span><i class="fa fa-check-circle-o"></i> Shopping bag</span> <span><i class="fa fa-check-circle-o"></i> Order details</span> <span id="payment"><span id="three">3</span>Payment</span> </div> -->
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="left border">
+                        <div class="row"> <span class="header">Billing</span>
+                            <div class="icons"> </div>
+                        </div>
+
+                        <input id="uuid" hidden>
+                        <span>Full name* </span>
+                        <input placeholder="Full name" id="name">
+                        <p id="errorname" style="color: red;"></p>
+                        <span>Email </span>
+                        <input placeholder="abc@gmail.com" id="emai" disabled>
+                        <p id="erroremail" style="color: red;"></p>
+                        <span>Phone* </span>
+                        <input placeholder="+92" id="phone" onkeyup="phonevalidcheck()">
+                        <p id="errorphone" style="color: red;"></p>
+                        <span>Billing address* </span>
+                        <input placeholder="" id="address">
+                        <p id="errorbaddress" style="color: red;"></p>
+                        <span>City* </span>
+                        <br>
+
+                        <select id="citys" onchange="onchacity()" class="form-control getcitys">
+                            <option value="" disabled selected>select city</option>
+                        </select>
+                        <p id="errorcity" style="color: red;"></p>
+
+                        <input type="hidden" id="deliveypriceset" value="0">
+                        <input type="hidden" id="cityidset" value="0">
+                        <span hidden>Country* </span>
+                        <input placeholder="" id="country" value="Pakistan" hidden>
+                        <span hidden>Province/State* </span>
+                        <input placeholder="" id="province" value="null" hidden>
+                        <label><input type="checkbox" onchange="valueChanged()" id="shippingtrue"> Ship to a different
+                            address?</label>
+
+                        <div id="shippinghidediv" style="display: none;">
+                            <span>Full name* </span>
+                            <input placeholder="" id="s_name">
+                            <p id="error_s_name" style="color: red;"></p>
+                            <span>Shipping address* </span>
+                            <input placeholder="" id="s_address">
+                            <p id="error_s_address" style="color: red;"></p>
+                            <span>City* </span>
+                            <br>
+
+                            <select id="s_citys" onchange="onchacity()" class="form-control getcitys">
+                                <option disabled selected data-cityid="0" value="" data-miniorder="0" data-price="0">
+                                    select city</option>
+                            </select>
+                            <p id="error_s_citys" style="color: red;"></p>
+                            <span hidden>Country* </span>
+                            <input placeholder="" id="s_country" value="Pakistan" hidden>
+                            <span hidden>Province/State* </span>
+                            <input placeholder="" id="s_province" value="" hidden>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-5">
+                    <div class="right border">
+                        <div class="header">Order Summary</div>
+                        <p>
+                        <p id="count"></p>
+                        </p>
+                        <div id="tablaa"></div>
+                        <hr>
+                        <div class="row lower">
+                            <div class="col text-left">Subtotal</div>
+                            <div class="col text-right">PKR: <span id="subtotle"></span></div>
+                        </div>
+                        <div class="row lower">
+                            <div class="col text-left">Delivery</div>
+                            <div class="col text-right" id="delivery_price">0</div>
+                        </div>
+                        <div class="row lower">
+                            <div class="col text-left"><b>Total to pay</b></div>
+                            <div class="col text-right">PKR: <span id="sutotle"></span><b></b></div>
+                        </div>
+                        <button class="btn" onclick="validate()">Place order</button>
+                        <p class="text-muted text-center">Complimentary Shipping & Returns</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div> </div>
+    </div>
+
+    <style>
+        .toast {
+            font-size: 14px
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgb(0, 0, 34);
+            font-size: 0.8rem
+        }
+
+        .card {
+            max-width: 1000px;
+            margin: 2vh
+        }
+
+        .card-top {
+            padding: 0.7rem 5rem
+        }
+
+        .card-top a {
+            float: left;
+            margin-top: 0.7rem
+        }
+
+        #logo {
+            font-family: 'Dancing Script';
+            font-weight: bold;
+            font-size: 1.6rem
+        }
+
+        .card-body {
+            padding: 0 5rem 5rem 5rem;
+            background-image: url("https://i.imgur.com/4bg1e6u.jpg");
+            background-size: cover;
+            background-repeat: no-repeat
+        }
+
+        @media(max-width:768px) {
+            .card-body {
+                padding: 0 1rem 1rem 1rem;
+                background-image: url("https://i.imgur.com/4bg1e6u.jpg");
+                background-size: cover;
+                background-repeat: no-repeat
+            }
+
+            .card-top {
+                padding: 0.7rem 1rem
+            }
+        }
+
+        .row {
+            margin: 0
+        }
+
+        .upper {
+            padding: 1rem 0;
+            justify-content: space-evenly
+        }
+
+        #three {
+            border-radius: 1rem;
+            width: 22px;
+            height: 22px;
+            margin-right: 3px;
+            border: 1px solid blue;
+            text-align: center;
+            display: inline-block
+        }
+
+        #payment {
+            margin: 0;
+            color: blue
+        }
+
+        .icons {
+            margin-left: auto
+        }
+
+        form span {
+            color: rgb(179, 179, 179)
+        }
+
+        form {
+            padding: 2vh 0
+        }
+
+        input {
+            border: 1px solid rgba(0, 0, 0, 0.137);
+            padding: 1vh;
+            /* margin-bottom: 4vh; */
+            outline: none;
+            width: 100%;
+            background-color: rgb(247, 247, 247)
+        }
+
+        input:focus::-webkit-input-placeholder {
+            color: transparent
+        }
+
+        .header {
+            font-size: 1.5rem
+        }
+
+        .left {
+            background-color: #ffffff;
+            padding: 2vh
+        }
+
+        .left img {
+            width: 2rem
+        }
+
+        .left .col-4 {
+            padding-left: 0
+        }
+
+        .right .item {
+            padding: 0.3rem 0
+        }
+
+        .right {
+            background-color: #ffffff;
+            padding: 2vh
+        }
+
+        .col-8 {
+            padding: 0 1vh
+        }
+
+        .lower {
+            line-height: 2
+        }
+
+        .btn {
+            background-color: rgb(23, 4, 189);
+            border-color: rgb(23, 4, 189);
+            color: white;
+            width: 100%;
+            font-size: 0.7rem;
+            margin: 4vh 0 1.5vh 0;
+            padding: 1.5vh;
+            border-radius: 0
+        }
+
+        .btn:focus {
+            box-shadow: none;
+            outline: none;
+            box-shadow: none;
+            color: white;
+            -webkit-box-shadow: none;
+            -webkit-user-select: none;
+            transition: none
+        }
+
+        .btn:hover {
+            color: white
+        }
+
+        a {
+            color: black
+        }
+
+        a:hover {
+            color: black;
+            text-decoration: none
+        }
+
+        input[type=checkbox] {
+            width: unset;
+            margin-bottom: unset
+        }
+
+        #cvv {
+            background-image: linear-gradient(to left, rgba(255, 255, 255, 0.575), rgba(255, 255, 255, 0.541)), url("https://img.icons8.com/material-outlined/24/000000/help.png");
+            background-repeat: no-repeat;
+            background-position-x: 95%;
+            background-position-y: center
+        }
+
+        #cvv:hover {}
+    </style>
+    <script type="text/javascript" src="/plugins/jQuery/crypto-js.min.js"></script>
+    <!-- Custom Script functions -->
+    <script type="text/javascript" src="/javascript/config.js"></script>
+    <script src="/Controllers/checkoutController.js"></script>
+    <script type="text/javascript" src="/routes/web.js"></script>
+
+
+    <script src="https://api.ipify.org?format=jsonp&callback=getIP"></script>
+    <script src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/toasty.js"></script>
+
+</body>
+
+</html>

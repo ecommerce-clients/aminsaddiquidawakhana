@@ -1,0 +1,81 @@
+{{ define "main" }}
+<script>
+    var pagenames = "account";
+</script>
+
+
+    <!-- Start Login -->
+<section class="ec-page-content section-space-p">
+    <div class="container">
+        <div class="row">
+            
+            <div class="ec-register-wrapper">
+                <div class="ec-register-container" style="border: unset;">
+                    <div class="ec-register-form">
+                        <div class="row" style="box-shadow:1px 1px 15px 0.01px">
+                            <div class="col-12 col-md-4"
+                                style="background-color: var(--background);">
+                                <div id="col-top-30" class="ec-register-wrap ec-register-btn justify-center">
+                                    <label class="btn" style="cursor: unset; color: var(--font);">Continue With</label>
+
+                                    <div class="row" id="p-rl">
+                                        <div class="col-4 text-center"><button class="btn btn-primary" style="border-radius: 50%;border-color: var(--font) !important;" type="button" onclick="fbLogin()"><i class="fa fa-facebook-official" style="color: var(--font);" aria-hidden="true"></i></button></div>
+                                        <div class="col-4 text-center"><button class="btn btn-primary" style="border-radius: 50%;border-color: var(--font) !important;" type="button" onclick="GoogleLogin()"><i class="fa fa-google" aria-hidden="true" style="color: var(--font);"></i></button></div>
+                                        <div class="col-4 text-center"><button class="btn btn-primary" style="border-radius: 50%;border-color: var(--font) !important;" type="button" onclick="guLogin()"><i class="fa fa-user-circle-o" aria-hidden="true" style="color: var(--font);"></i></button></div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+
+                            <div class="col-12 col-md-8 pt-10">
+                                <div class="row">
+                                    <div class="mx-auto col-lg-9 col-md-11 col-11">
+                                        <center>
+                                            <h5>Reset password <br></h5>
+                                        </center>
+                                        <span class="ec-register-wrap ec-register-half">
+                                            <!-- <label>Email*</label> -->
+                                            <div class="input-group">
+                                                <span class="input-group-text"
+                                                    style="background-color: transparent;border: none;border-bottom:1px solid"
+                                                    id="emailallow"><i class="fa fa-envelope-o"
+                                                        aria-hidden="true"></i></span>
+                                                <input type="email" disabled name="email" id="l_email" placeholder="Enter your email" required
+                                                    aria-describedby="emailallow" />
+                                                    <p id="e_email" style="color: red;"></p>
+                                               
+                                            </div>
+                                        </span>
+                                        <span class="ec-register-wrap ec-register-half">
+                                            <div class="input-group">
+                                                <!-- <label>Password*</label> -->
+                                                <span class="input-group-text"
+                                                    style="background-color: transparent;border: none;border-bottom:1px solid"
+                                                    id="passwordsallow"><i class="fa fa-unlock-alt"
+                                                        aria-hidden="true"></i></span>
+                                                <input type="password" name="password" id="l_password" placeholder="Enter your password"
+                                                required aria-describedby="passwordsallow"/>
+                                                <p id="e_password" style="color: red"></p>
+                                                
+                                            </div>
+                                        </span>
+                                        <span class="ec-register-wrap ec-register-half" id="bottom-desktop-30">
+         
+                                            <button class="btn btn-outline-primary" id="btn-center-desktop" type="button" onclick="validate1()">Reset password</button>
+                                           
+                                            </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Login -->
+    <script src="https://controllers.eralive.net/v1/Controllers/forgetController.js"></script>
+    <script src="https://controllers.eralive.net/v1/Controllers/loginController.js"></script>
+{{ end }}

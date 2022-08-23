@@ -1,0 +1,225 @@
+{{ define "main" }}
+<div class="checkout_page">
+    <!-- Ec checkout page -->
+    <section class="ec-page-content section-space-p">
+      <div class="container">
+          <div class="row">
+              <div class="ec-checkout-leftside col-lg-8 col-md-12 ">
+                  <!-- checkout content Start -->
+                  <div class="ec-checkout-content">
+                      <div class="ec-checkout-inner">
+                          <span id="alert-set-cart"></span>
+                       
+                          <div class="ec-checkout-wrap margin-bottom-30 padding-bottom-3">
+                              <div class="ec-checkout-block ec-check-bill">
+                                  <h3 class="ec-checkout-title">Billing Details</h3>
+                                  <div class="ec-bl-block-content">
+                                      <div class="ec-check-bill-form">
+                                          <form action="#" method="post">
+                                              <span class="ec-bill-wrap ec-bill-half">
+                                                  <label>Full name*</label>
+                                                  <input type="text" name="Fullname"
+                                                      placeholder="Enter your Full name" id="name" required />
+                                                      <p id="errorname" style="margin-top: -18px;color: red;margin-bottom: 15px;"></p>
+                                              </span>
+                                              <span class="ec-bill-wrap ec-bill-half">
+                                                  <label>Email*</label>
+                                                  <input type="text" name="email" id="emai" 
+                                                      placeholder="Enter your email" disabled required onkeyup="emailvalidcheck()" />
+                                                      <p id="erroremail" style="margin-top: -18px;color: red;margin-bottom: 15px;"></p>
+                                              </span>
+                                              <span class="ec-bill-wrap ec-bill-half">
+                                                  <label>Phone*</label>
+                                                  <input type="text" name="Phone" placeholder="Enter your phone number" required id="phone" maxlength="14" onkeyup="phonevalidcheck()"/>
+                                                  <p id="errorphone" style="margin-top: -18px;color: red;margin-bottom: 15px;"></p>
+                                              </span>
+                                              <span class="ec-bill-wrap ec-bill-half">
+                                                  <label>City*</label>
+                                                  <span class="ec-bl-select-inner">
+                                                      <select id="citys" onchange="onchacity()"
+                                                          class="ec-bill-select getcitys" required>
+                                                          <option selected disabled value="" data-cityid="0" value="" data-miniorder="0" data-price="0">Select city</option>
+                                                          
+                                                      </select>
+                                                     
+                                                  </span>
+                                                  <p id="errorcity" style="margin-top: -18px;color: red;margin-bottom: 15px;"></p>
+                                              </span>
+                                              <span class="ec-bill-wrap">
+                                                  <label>Billing address*</label>
+                                                  <input type="text" id="address" required placeholder="Enter your billing address" />
+                                                  <p id="errorbaddress" style="margin-top: -18px;color: red;margin-bottom: 15px;"></p>
+                                                  <input type="hidden" id="deliveypriceset" value="0">
+                                                  <input type="hidden" id="cityidset" value="0">
+                                                  <span hidden>Country* </span>
+                                                  <input placeholder="" id="country" value="Pakistan" hidden>
+                                                  <span hidden>Province/State* </span>
+                                                  <input placeholder="" id="province" value="null" hidden>
+                                              </span>
+                                              
+                                          </form>
+                                      </div>
+
+                                  </div>
+                              </div>
+
+                          </div>
+                          <div class="ec-checkout-wrap margin-bottom-30 padding-bottom-3" id="shippinghidediv" style="display: none;">
+                              <div class="ec-checkout-block ec-check-bill">
+                                  <h3 class="ec-checkout-title">Shipping Details</h3>
+                                  <div class="ec-bl-block-content">
+                                      <div class="ec-check-bill-form">
+                                          <form action="#" method="post">
+                                              <span class="ec-bill-wrap ec-bill-half">
+                                                  <label>Full name*</label>
+                                                  <input type="text" name="Fullname"
+                                                      placeholder="Enter your Full name" id="s_name" required />
+                                                      <p id="error_s_name" style="margin-top: -18px;color: red;margin-bottom: 15px;"></p>
+                                              </span>
+                                              <span class="ec-bill-wrap ec-bill-half">
+                                                  <label>City*</label>
+                                                  <span class="ec-bl-select-inner">
+                                                      <select id="s_citys" onchange="onchacity()"
+                                                          class="ec-bill-select getcitys" required>
+                                                          <option disabled selected data-cityid="0" value="" data-miniorder="0" data-price="0">Select city</option>
+                                                          
+                                                      </select>
+                                                      
+                                                  </span>
+                                                  <p id="error_s_citys" style="margin-top: -18px;color: red;margin-bottom: 15px;"></p>
+                                              </span>
+                                              <span class="ec-bill-wrap">
+                                                  <label>Shipping address*</label>
+                                                  <input type="text" id="s_address" required placeholder="Enter your Shipping address" />
+                                                  <p id="error_s_address" style="margin-top: -18px;color: red;margin-bottom: 15px;"></p>
+                                              
+                                                  <span hidden>Country* </span>
+                                                  <input placeholder="" id="s_country" value="Pakistan" hidden>
+                                                  <span hidden>Province/State* </span>
+                                                  <input placeholder="" id="s_province" value="" hidden>
+                                              
+                                              </span>
+                                              
+                                          </form>
+                                      </div>
+
+                                  </div>
+                              </div>
+
+                          </div>
+
+
+                          <div class="ec-checkout-wrap margin-bottom-30 padding-bottom-3">
+                            <div class="ec-checkout-block ec-check-bill">
+                               
+                                <div class="ec-bl-block-content">
+
+                                        <form action="#" method="post">
+                                          
+                                                <div class="row">
+                                                    <div class="col-1 col-md-1 pull-right text-right padding-0">
+                                                        <input type="checkbox" onchange="valueChanged()" id="shippingtrue" style="margin-top: 25%;width: 15px; height: 20px;">
+                                                    </div>
+                                                    <div class="col-11 col-md-8 pull-left text-left">
+                                                        <label for="shippingtrue"style="
+                                                        margin-top: 3%;
+                                                    ">Ship to a different address?</label>
+                                                    </div>
+                                                    <div class="col-12 col-md-3 pull-right text-right">
+                                                        <a class="btn btn-secondary" href="#" onclick="validate()">Place Order</a>
+                                                    </div>
+                                                </div>
+                                                
+                                               
+                                         
+
+                                            
+                                        </form>
+                                        <br>
+                                    
+
+                                </div>
+                            </div>
+
+                        </div>
+                         
+                      </div>
+                  </div>
+                  <!--cart content End -->
+              </div>
+              <!-- Sidebar Area Start -->
+              <div class="ec-checkout-rightside col-lg-4 col-md-12">
+                  <div class="ec-sidebar-wrap">
+                      <!-- Sidebar Summary Block -->
+                      <div class="ec-sidebar-block">
+                          <div class="ec-sb-title">
+                              <h3 class="ec-sidebar-title">Summary</h3>
+                          </div>
+                          <div class="ec-sb-block-content">
+                              <div class="ec-checkout-summary">
+                                  <div>
+                                      <span class="text-left">Sub-Total</span>
+                                      <span class="text-right">PKR: <span id="subtotle"></span></span>
+                                  </div>
+                                  <div>
+                                      <span class="text-left">Delivery Charges</span>
+                                      <span class="text-right">PKR: <span id="delivery_price">0</span></span>
+                                  </div>
+                                
+
+                                  <div class="ec-checkout-summary-total">
+                                      <span class="text-left">Total Amount</span>
+                                      <span class="text-right">PKR: <span id="sutotle">0</span></span>
+                                  </div>
+                              </div>
+                              <div class="ec-checkout-pro" id="tablaa" style="height:300px;overflow-y: auto; overflow-x:hidden">
+                                 
+                                 
+                              </div>
+                          </div>
+                      </div>
+                      <!-- Sidebar Summary Block -->
+                  </div>
+
+                  <div class="ec-sidebar-wrap ec-checkout-pay-wrap">
+                      <!-- Sidebar Payment Block -->
+                      <div class="ec-sidebar-block">
+                          <div class="ec-sb-title">
+                              <h3 class="ec-sidebar-title">Payment Method</h3>
+                          </div>
+                          <div class="ec-sb-block-content">
+                              <div class="ec-checkout-pay">
+                                  <div class="ec-pay-desc">Please select the preferred payment method to use on this
+                                      order.</div>
+                                  <form action="#">
+                                      <span class="ec-pay-option">
+                                          <span>
+                                              <input type="radio" id="pay1" name="radio-group" checked>
+                                              <label for="pay1">Cash On Delivery</label>
+                                          </span>
+                                      </span>
+                                      <span class="ec-pay-agree">All prices are inclusive of taxes. You'll receive confirmation</span>
+                                  </form>
+                              </div>
+                          </div>
+                      </div>
+                      <!-- Sidebar Payment Block -->
+                  </div>
+              
+              </div>
+          </div>
+      </div>
+  </section>
+
+</div>
+<style>
+    .padding-0{
+    padding-right:0;
+    padding-left:0;
+}
+</style>
+  <script>
+    var pagenames = "checkout";
+  </script>
+  <script src="https://controllers.eralive.net/v1/Controllers/getlastaddress.js"></script>
+  {{ end }}
