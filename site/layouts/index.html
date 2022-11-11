@@ -89,7 +89,7 @@ $( document ).ready(function() {
                   <div class="shop-pro-content">
                       <div class="shop-pro-inner">
                           <div class="row" id="search">
-                            {{ range (where site.RegularPages "Type" "products") }}
+                            {{ range first 15 (where site.RegularPages "Type" "products") }}
                             <div class="col-lg-3 col-md-3 col-sm-3 pricesrangeclass" style="margin-bottom: 20px;" data-category="{{ .Params.Category }}" data-price="{{ .Params.Price }}">
                                 <!-- START single card -->
                                 <div class="ec-product-lsc">
@@ -102,7 +102,7 @@ $( document ).ready(function() {
                                         <script>
                                             var date = new Date({{ .Params.date }})
                                             if(moment().diff(date,'days') < 4){
-                                                document.write('<span class="ec-product-ribbon">new</span>')
+                                                document.write('<span class="ec-product-ribbon">NEW!</span>')
                                             }
                                             if('{{ .Params.featured }}' == 'true')
                                             {
@@ -189,7 +189,7 @@ $( document ).ready(function() {
                   <!--Shop content End -->
               </div>
                <!-- Sidebar Area Start -->
-               <div class="ec-shop-leftside col-lg-3 col-md-12 order-lg-first order-md-last order-md-1 order-1">
+               <div class="ec-shop-leftside col-lg-3 col-md-12 order-lg-first order-md-last order-md-1 order-1" style="visibility:hidden;">
                 <div id="">
                     <div class="ec-sidebar-heading">
                         <h1>Filter Products By</h1>
