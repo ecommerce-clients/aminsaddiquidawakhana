@@ -158,8 +158,10 @@
                     <div class="ec-product-lsc">
                         <div class="ec-product-image">
                             <a href="{{ .Permalink }}">
-                                {{ range first 1 .Params.Images }}
-                                <img  src="{{ .image | absURL }}" id="he-123" class="img-center img-fluid mx-auto" alt="">
+                                {{ with .Params.Images }}
+                                {{ range first 1 . }}
+                                <img src="{{ .image | absURL }}" id="he-123" class="img-center img-fluid mx-auto" alt="">
+                                {{ end }}
                                 {{ end }}
                             </a>
                             <script>
