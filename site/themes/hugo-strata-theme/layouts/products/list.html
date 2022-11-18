@@ -72,7 +72,7 @@
                                 {{ end }}{{ end }} data-item-price="{{ .Params.Price }}" id="add_to_cart" data-item-url="{{ .Permalink }}"
                                 data-item-description="{{ .Description }}"
                                 onclick="Check({{ .Params.ProductID }},{{ .Title }},{{ .Params.Description }},{{ .Params.Price }}
-                , {{ with .Params.Images}} {{ range first 1 . }}{{ .image | absURL }}{{ end }}{{ end }},1)" title=" {{ site.Params.currencySymbol }}{{ .Params.Price }} ">
+                                , {{ with .Params.Images}} {{ range first 1 . }}{{ .image | absURL }}{{ end }}{{ end }},1)" title=" {{ site.Params.currencySymbol }}{{ .Params.Price }} ">
                             Add to cart
                         </button>
                         <button class="btn btn-sm btn-outline-primary">
