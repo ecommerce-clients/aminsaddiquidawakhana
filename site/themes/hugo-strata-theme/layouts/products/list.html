@@ -68,11 +68,11 @@
                         </p>
 
                         <button class="btn btn-sm btn-outline-primary" id="modalActivate" data-toggle="modal" data-target="#exampleModalPreview" data-item-id="{{ .Params.ProductID }}"
-                                data-item-name="{{ .Title }}" {{ range first 1 .Params.Images }} data-item-image="{{ .image | absURL }}"
-                                {{ end }} data-item-price="{{ .Params.Price }}" id="add_to_cart" data-item-url="{{ .Permalink }}"
+                                data-item-name="{{ .Title }}" {{ with .Params.Images }} {{ range first 1 . }} data-item-image="{{ .image | absURL }}"
+                                {{ end }}{{ end }} data-item-price="{{ .Params.Price }}" id="add_to_cart" data-item-url="{{ .Permalink }}"
                                 data-item-description="{{ .Description }}"
                                 onclick="Check({{ .Params.ProductID }},{{ .Title }},{{ .Params.Description }},{{ .Params.Price }}
-                ,{{ range first 1 .Params.Images }}{{ .image | absURL }}{{ end }},1)" title=" {{ site.Params.currencySymbol }}{{ .Params.Price }} ">
+                , {{ with .Params.Images}} {{ range first 1 . }}{{ .image | absURL }}{{ end }}{{ end }},1)" title=" {{ site.Params.currencySymbol }}{{ .Params.Price }} ">
                             Add to cart
                         </button>
                         <button class="btn btn-sm btn-outline-primary">
