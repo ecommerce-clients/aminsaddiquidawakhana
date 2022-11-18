@@ -13,15 +13,8 @@
     <!--Ec Header Top Start -->
     <div class="header-top d-lg-none">
         <div class="container">
-            <div class="row">
-                <div class="col-md-12 align-self-center">
-                    <div class="align-self-center">
-                        Hassle Free Return & Exchange - Free Shipping on Orders Over Rs.2500
-                    </div>
-                </div>
-            </div>
             <div class="row" id="responsicecustom">
-                <div class="col-2">
+                <div class="col-6">
                     <div class="header-logo">
                         <a href="{{ site.BaseURL }}">
                             <img src="{{ site.Params.logo | absURL }}" alt="Site Logo" /><img class="dark-logo" src="{{ site.Params.logo | absURL }}" alt="Site Logo"
@@ -29,17 +22,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-md-7 align-self-center">
-                    <div class="ec-main-menu">
-                        <ul>
-                            <li><a href="{{ site.BaseURL }}">{{ with site.Params.Home }} {{ . }} {{ end }}</a></li>
-                            {{ range site.Menus.main }}
-                            <li id="none{{ .Name }}" class="none{{ .Name }}"><a href="{{ .URL | absURL }}">{{ .Name }}</a></li>
-                            {{ end }}
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-3 d-lg-none ">
+                <div class="col-6 d-lg-none ">
                     <div class="ec-header-bottons">
                         <!-- Header User Start -->
 
@@ -82,6 +65,13 @@
         <div class="container position-relative">
             <div class="row">
                 <div class="ec-flex">
+                    <div class="align-self-center">
+                        Hassle Free Return & Exchange - Free Shipping on Orders Over Rs.2500
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="ec-flex">
                     <!-- Ec Header Logo Start -->
                     <div class="align-self-center">
                         <div class="header-logo">
@@ -90,10 +80,13 @@
                     </div>
                     <!-- Ec Header Logo End -->
                     <!-- Ec Header Search Start -->
-                    <div class="align-self-center">
-                        <div class="header-search">
-
-                        </div>
+                    <div class="ec-main-menu">
+                        <ul>
+                            <li><a href="{{ site.BaseURL }}">{{ with site.Params.Home }} {{ . }} {{ end }}</a></li>
+                            {{ range site.Menus.main }}
+                            <li id="none{{ .Name }}" class="none{{ .Name }}"><a href="{{ .URL | absURL }}">{{ .Name }}</a></li>
+                            {{ end }}
+                        </ul>
                     </div>
                     <!-- Ec Header Search End -->
                     <!-- Ec Header Button Start -->
