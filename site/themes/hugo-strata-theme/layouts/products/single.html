@@ -225,7 +225,7 @@
                                 ,{{ range first 1 .Params.Images }}{{ .image | absURL }}{{ end }},1,'{{ .Params.ProductID }}');" title="PKR {{ .Params.Price }} "><i class="fa fa-cart-plus" aria-hidden="true"></i> <span id="cartipda">cart</span></a>
                             {{else}}
                             <a class=" ec-add-to-cart" href="#a" title="Add To Cart" onclick="Check({{ .Params.ProductID }},{{ .Title }},{{ .Params.Description }},{{ .Params.Price }}
-                                , {{ with .Params.Images }} {{ range first 1. }} {{ .image | absURL }} {{ end }} {{ end }},1,'{{ .Params.ProductID }}',''),''" title="PKR {{ .Params.Price }} "><i class="fa fa-cart-plus" aria-hidden="true"></i> <span id="cartipda">cart</span></a>
+                                , {{ with .Params.Images }} {{ range first 1 . }} {{ .image | absURL }} {{ end }} {{ end }},1,'{{ .Params.ProductID }}',''),''" title="PKR {{ .Params.Price }} "><i class="fa fa-cart-plus" aria-hidden="true"></i> <span id="cartipda">cart</span></a>
 
                             {{ end }}
                             <div class="ec-link-icon">
