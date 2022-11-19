@@ -55,50 +55,38 @@
 {{ end }}
 <!-- /banner -->
 <!-- Ec Shop page -->
-<section class="ec-page-content section-space-p">
+<section class="ec-page-content">
     <div class="container">
         <div class="row">
             {{ range first 2 (where site.RegularPages "Type" "products") }}
             <div class="col-md-6 col-sm-12">
-                <div style="width:100%; height:100%; min-height:200px; min-width:200px; background-image: {{ with .Params.Images }} {{ range first 1 . }} {{ .image | absURL }} {{ end }} {{ end }};">
-                    <h2>Fetured Product: {{ .Params.Title }}</h2>
-                    <a href="{{ .Permalink }}">{{ .Params.Description }}</a>
+                {{with .Params.Images}}
+                {{ range first 1 . }}
+                <div style="min-height:300px; border-radius: 10px; box-shadow:0px 0px 28px #5c5c5c61; padding: 85px 20px 0 20px; background-position: center; background-repeat: no-repeat; background-image: url({{ .image | absURL}});">
+                    {{ end }}
+                    {{ end }}
+                    <div style="background-color:#ffffff6b; color:black !important">
+                    <h5><script>document.write(decodeURIComponent('{{ .Params.Title }}').replaceAll('+',' '))</script></h2>
+                    <p><script>document.write(decodeURIComponent('{{ .Params.ShortDescription }}').replaceAll('+',' '))</script></p>
+                    <button class="btn btn-wide btn-primary"><a href="{{ .Permalink }}">View Details</a></button>
+                    </div>
                 </div>
             </div>
             {{ end }}
         </div>
-            <div class="row">
-                <div class="ec-shop-rightside col-lg-9 col-md-12 order-lg-last order-md-first  order-md-2 order-2 margin-b-30">
+        <hr/>
+            <div class="row mt-5">
+                <div class="ec-shop-rightside col-lg-12 col-md-12 margin-b-30">
                     <!-- Shop Top Start -->
-                    <div class="ec-pro-list-top d-flex">
-                        <div class="col-12 col-lg-6 col-md-6 col-sm-12 ec-grid-list">
-                            <div class="ec-gl-btn">
-                                <form class="ec-btn-group-form" action="#">
-                                    <input class="form-control myInput-hide myInput form-control" id="myInput" placeholder="Enter Your Product Name..." type="text" style="display: none;">
-
-                                </form>
-                            </div>
-
-                        </div>
-                        <!-- <div class="col-12 col-lg-6 col-md-6 col-sm-12 ec-sort-select mobile-view-grid-hide">
-
-                  <div class="ec-gl-btn">
-
-                      <button class="btn btn-grid-50 grid active"><img src="https://v1.eralive.net/assets/images/icons/grid.svg"
-                              class="svg_img gl_svg" id="grid" alt="grid" /></button>
-                      <button class="btn btn-list-50 "><img src="https://v1.eralive.net/assets/images/icons/list.svg"
-                              class="svg_img gl_svg" id="list" alt="list" /></button>
-                  </div>
-
-                </div> -->
-                    </div>
                     <!-- Shop Top End -->
+                    <h4>Top Selling</h5>
+                        <br/>
                     {{ if site.Data.homepage.products.enable }}
                     <!-- Shop content Start -->
                     <div class="shop-pro-content">
                         <div class="shop-pro-inner">
                             <div class="row" id="search">
-                                {{ range (where site.RegularPages "Type" "products") }}
+                                {{ range first 15 (where site.RegularPages "Type" "products") }}
                                 <div class="col-lg-3 col-md-3 col-sm-3 pricesrangeclass" style="margin-bottom: 20px;" data-category="{{ .Params.Category }}" data-price="{{ .Params.Price }}">
                                     <!-- START single card -->
                                     <div class="ec-product-lsc">
@@ -140,7 +128,7 @@
                                                     </span>
                                                 </p>
 
-                                                <p style="text-decoration:line-through">
+                                                <!-- <p style="text-decoration:line-through">
                                                     {{ if .Params.PriceBefore }}
                                                     PKR <span id="{{ .Params.ProductID }}{{ .Params.ProductID }}">
                                                         <script>document.write(new Intl.NumberFormat().format(parseFloat('{{ .Params.PriceBefore }}')))</script>
@@ -148,7 +136,7 @@
                                                     {{else}}
                                                     <br>
                                                     {{ end }}
-                                                </p>
+                                                </p> -->
                                             </div>
                                             <span class="rangeprice" hidden>{{ .Params.Price }}</span>
                                             {{ if .Params.Variants }}
@@ -168,8 +156,6 @@
                                             </div>
                                             <br>
                                             {{else}}
-                                            <br>
-                                            <br>
                                             <br>
                                             <br>
                                             {{ end }}
@@ -214,74 +200,6 @@
                         <!-- Ec Pagination End -->
                     </div>
                     <!--Shop content End -->
-                </div>
-                <!-- Sidebar Area Start -->
-                <div class="ec-shop-leftside col-lg-3 col-md-12 order-lg-first order-md-last order-md-1 order-1">
-                    <div id="">
-                        <div class="ec-sidebar-heading">
-                            <h1>Filter Products By</h1>
-                        </div>
-                        <div class="ec-sidebar-wrap">
-                            <!-- Sidebar Price Block -->
-
-                            <div class="ec-sidebar-block">
-                                <div class="ec-sb-title">
-                                    <h3 class="ec-sidebar-title">Sort by</h3>
-                                </div>
-                                <div class="ec-sb-block-content es-price-slider">
-                                    <div class="ec-price-filter">
-
-                                        <select name="ec-select" class="form-control" style="padding-right:0px" id="pricerageallow" onchange="sort()">
-                                            <option disabled selected>Select price range</option>
-                                            <option value="byPrice">Select low to high</option>
-                                            <option value="byDistance">Select high to low</option>
-                                        </select>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <br>
-                            <div class="ec-sidebar-block">
-                                <div class="ec-sb-title">
-                                    <h3 class="ec-sidebar-title">Price</h3>
-                                </div>
-                                <div class="ec-sb-block-content es-price-slider">
-                                    <div class="ec-price-filter">
-                                        <div id="ec-sliderPrice" class="filter__slider-price" data-min="0"
-                                             data-step="10" onclick="checkbox()" data-max="1" onmouseleave="checkbox()"></div>
-
-                                        <div class="ec-price-input">
-                                            <label class="filter__label">
-                                                <input type="text"
-                                                       class="filter__input" id="sprice" onchange="checkbox()">
-                                            </label>
-                                            <span class="ec-price-divider"></span>
-                                            <label class="filter__label">
-                                                <input type="text"
-                                                       class="filter__input" id="hprice" onchange="checkbox()">
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <br>
-                            <!-- Sidebar Category Block -->
-                            <div class="ec-sidebar-block">
-                                <div class="ec-sb-title">
-                                    <h3 class="ec-sidebar-title">Category</h3>
-                                </div>
-                                <div class="ec-sb-block-content es-price-slider">
-                                    <div class="ec-price-filter">
-                                        <ul id="catulli">
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
