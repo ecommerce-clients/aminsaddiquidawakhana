@@ -58,13 +58,18 @@
 <section class="ec-page-content section-space-p">
     <div class="container">
         <div class="row">
-            {{range top 2 (where site.RegularPages "Type" "products")}}
+            {{range (where site.RegularPages "Type" "products")}}
+            {{with .Params.Images}}
+            {{ range first 2 . }}
             <div class="col-md-6 col-sm-12">
                 <div style="width=100%; height:100%; background-image:{{ .Params.Image }};">
                     <h2>{{ .Params.Title }}</h2>
                 </div>
             </div>
-            </div>
+            {{ end }}
+            {{ end }}
+            {{ end }}
+        </div>
             <div class="row">
                 <div class="ec-shop-rightside col-lg-9 col-md-12 order-lg-last order-md-first  order-md-2 order-2 margin-b-30">
                     <!-- Shop Top Start -->
