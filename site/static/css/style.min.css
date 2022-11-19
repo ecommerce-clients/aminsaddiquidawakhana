@@ -96,9 +96,11 @@
     padding: 8px 0 !important;
   }
 
-.ec-header{
-    background-color: var(--background)!important;
-    color: var(--font)!important;
+.ec-header {
+    box-shadow: 0 0px 25px #555;
+    z-index: 2;
+    background-color: var(--background) !important;
+    color: var(--font) !important;
 }
 .ec-main-menu ul li.active > a{
     color: var(--font)!important;
