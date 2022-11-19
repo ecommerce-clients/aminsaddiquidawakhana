@@ -2,8 +2,11 @@
   "ExpandedNodes": [
     "",
     "\\site",
-    "\\src"
+    "\\site\\static",
+    "\\site\\static\\css",
+    "\\site\\themes",
+    "\\site\\themes\\hugo-strata-theme\\layouts\\products"
   ],
-  "SelectedNode": "\\site\\layouts",
+  "SelectedNode": "\\site\\static\\css\\style.min.css",
   "PreviewInSolutionExplorer": false
 }
