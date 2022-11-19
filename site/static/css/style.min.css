@@ -554,3 +554,7 @@ width: 100%;
     background-color:var(--background) !important;
     color: var(--font) !important;
 }
+.ec-product-lsc{
+    background-color:#F8F8F8;
+    border-radius:10px;
+}

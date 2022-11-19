@@ -65,6 +65,8 @@
                             <s>PKR {{ .Params.PriceBefore }}</s>
                             {{ end }}
                             <span class="lead text-primary">PKR {{ .Params.Price }}</span>
+                            <span class="lead text-primary;" style="justify-content:right;">PKR {{ .Params.Unit }}</span>
+
                         </p>
 
                         <button class="btn btn-sm btn-outline-primary" id="modalActivate" data-toggle="modal" data-target="#exampleModalPreview" data-item-id="{{ .Params.ProductID }}"
