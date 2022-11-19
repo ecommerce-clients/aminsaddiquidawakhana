@@ -558,3 +558,6 @@ width: 100%;
     background-color:#F8F8F8;
     border-radius:10px;
 }
+.ec-main-menu ul {
+    align-items: center;
+}
