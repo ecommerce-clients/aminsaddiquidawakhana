@@ -60,13 +60,10 @@
         <div class="row">
             {{ range first 2 (where site.RegularPages "Type" "products") }}
             <div class="col-md-6 col-sm-12">
-                {{ with .Params.Images }}
-                {{ range first 1 . }}
-                <div style="width:100%; height:100%; min-height:200px; min-width:200px; background-image:{{ .image | absURL }} {{ end }};">
+                <div style="width:100%; height:100%; min-height:200px; min-width:200px; background-image: {{ with .Params.Images }} {{ range first 1 . }} {{ .image | absURL }} {{ end }} {{ end }};">
                     <h2>Fetured Product: {{ .Params.Title }}</h2>
                     <a href="{{ .Permalink }}">{{ .Params.Description }}</a>
                 </div>
-                {{ end }}
             </div>
             {{ end }}
         </div>
