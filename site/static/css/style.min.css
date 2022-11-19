@@ -83,9 +83,9 @@
     justify-content: center!important;
     border-bottom: 2px solid black!important;
 }
-.header-logo img{
+/*.header-logo img{
     width: unset !important;
-}
+}*/
 .modal-content{
     padding: 20px!important;
 }

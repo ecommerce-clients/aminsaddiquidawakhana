@@ -58,49 +58,57 @@
 <section class="ec-page-content section-space-p">
     <div class="container">
         <div class="row">
-            <div class="ec-shop-rightside col-lg-9 col-md-12 order-lg-last order-md-first  order-md-2 order-2 margin-b-30">
-                <!-- Shop Top Start -->
-                <div class="ec-pro-list-top d-flex">
-                    <div class="col-12 col-lg-6 col-md-6 col-sm-12 ec-grid-list">
-                        <div class="ec-gl-btn">
-                            <form class="ec-btn-group-form" action="#">
-                                <input class="form-control myInput-hide myInput form-control" id="myInput" placeholder="Enter Your Product Name..." type="text" style="display: none;">
-
-                            </form>
-                        </div>
-
-                    </div>
-                    <!-- <div class="col-12 col-lg-6 col-md-6 col-sm-12 ec-sort-select mobile-view-grid-hide">
-
-                      <div class="ec-gl-btn">
-
-                          <button class="btn btn-grid-50 grid active"><img src="https://v1.eralive.net/assets/images/icons/grid.svg"
-                                  class="svg_img gl_svg" id="grid" alt="grid" /></button>
-                          <button class="btn btn-list-50 "><img src="https://v1.eralive.net/assets/images/icons/list.svg"
-                                  class="svg_img gl_svg" id="list" alt="list" /></button>
-                      </div>
-
-                    </div> -->
+            {{range top 2 (where site.RegularPages "Type" "products")}}
+            <div class="col-md-6 col-sm-12">
+                <div style="width=100%; height:100%; background-image:{{ .Params.Image }};">
+                    <h2>{{ .Params.Title }}</h2>
                 </div>
-                <!-- Shop Top End -->
-                {{ if site.Data.homepage.products.enable }}
-                <!-- Shop content Start -->
-                <div class="shop-pro-content">
-                    <div class="shop-pro-inner">
-                        <div class="row" id="search">
-                            {{ range (where site.RegularPages "Type" "products") }}
-                            <div class="col-lg-3 col-md-3 col-sm-3 pricesrangeclass" style="margin-bottom: 20px;" data-category="{{ .Params.Category }}" data-price="{{ .Params.Price }}">
-                                <!-- START single card -->
-                                <div class="ec-product-lsc">
-                                    <div class="ec-product-image">
-                                        <a href="{{ .Permalink }}">
-                                            {{with .Params.Images}}
-                                            {{ range first 1 . }}
-                                            <img src="{{ .image | absURL }}" id="he-123" class="img-center img-fluid mx-auto" alt="">
-                                            {{ end }}
-                                            {{ end }}
-                                        </a>
-                                        <script>
+            </div>
+            </div>
+            <div class="row">
+                <div class="ec-shop-rightside col-lg-9 col-md-12 order-lg-last order-md-first  order-md-2 order-2 margin-b-30">
+                    <!-- Shop Top Start -->
+                    <div class="ec-pro-list-top d-flex">
+                        <div class="col-12 col-lg-6 col-md-6 col-sm-12 ec-grid-list">
+                            <div class="ec-gl-btn">
+                                <form class="ec-btn-group-form" action="#">
+                                    <input class="form-control myInput-hide myInput form-control" id="myInput" placeholder="Enter Your Product Name..." type="text" style="display: none;">
+
+                                </form>
+                            </div>
+
+                        </div>
+                        <!-- <div class="col-12 col-lg-6 col-md-6 col-sm-12 ec-sort-select mobile-view-grid-hide">
+
+                  <div class="ec-gl-btn">
+
+                      <button class="btn btn-grid-50 grid active"><img src="https://v1.eralive.net/assets/images/icons/grid.svg"
+                              class="svg_img gl_svg" id="grid" alt="grid" /></button>
+                      <button class="btn btn-list-50 "><img src="https://v1.eralive.net/assets/images/icons/list.svg"
+                              class="svg_img gl_svg" id="list" alt="list" /></button>
+                  </div>
+
+                </div> -->
+                    </div>
+                    <!-- Shop Top End -->
+                    {{ if site.Data.homepage.products.enable }}
+                    <!-- Shop content Start -->
+                    <div class="shop-pro-content">
+                        <div class="shop-pro-inner">
+                            <div class="row" id="search">
+                                {{ range (where site.RegularPages "Type" "products") }}
+                                <div class="col-lg-3 col-md-3 col-sm-3 pricesrangeclass" style="margin-bottom: 20px;" data-category="{{ .Params.Category }}" data-price="{{ .Params.Price }}">
+                                    <!-- START single card -->
+                                    <div class="ec-product-lsc">
+                                        <div class="ec-product-image">
+                                            <a href="{{ .Permalink }}">
+                                                {{with .Params.Images}}
+                                                {{ range first 1 . }}
+                                                <img src="{{ .image | absURL }}" id="he-123" class="img-center img-fluid mx-auto" alt="">
+                                                {{ end }}
+                                                {{ end }}
+                                            </a>
+                                            <script>
                                             var date = new Date({{ .Params.date }})
                                             if(moment().diff(date,'days') < 4){
                                                 document.write('<span class="ec-product-ribbon">new</span>')
@@ -109,162 +117,172 @@
                                             {
                                                 document.write('<span class="ec-product-ribbon">Featured</span>')
                                             }
-                                        </script>
-                                    </div>
-                                    <div class="ec-product-body">
-                                        <p class="ec-description">Category <span>
-                                        <script>document.write(decodeURIComponent('{{ .Params.Category }}').replaceAll('+',' '))</script></span></p>
-                                        <h3 class="ec-title"><a href="{{ .Permalink }}">
-                                        <script>document.write(decodeURIComponent('{{ .Title }}').replaceAll('+',' '))</script></a></h3>
-                                        <div class="ec-el-price">
-
-                                            <p class="ec-o-price">PKR <span id="{{ .Params.ProductID }}">
-                                            <script>document.write(new Intl.NumberFormat().format(parseFloat('{{ .Params.Price }}')))</script></span></p>
-
-                                            <p style="text-decoration:line-through">
-                                                {{ if .Params.PriceBefore }}
-                                                PKR <span id="{{ .Params.ProductID }}{{ .Params.ProductID }}">
-                                                <script>document.write(new Intl.NumberFormat().format(parseFloat('{{ .Params.PriceBefore }}')))</script></span>
-                                                {{else}}
-                                                <br>
-                                                {{ end }}
+                                            </script>
+                                        </div>
+                                        <div class="ec-product-body">
+                                            <p class="ec-description">
+                                                Category <span>
+                                                    <script>document.write(decodeURIComponent('{{ .Params.Category }}').replaceAll('+',' '))</script>
+                                                </span>
                                             </p>
-                                        </div>
-                                        <span class="rangeprice" hidden>{{ .Params.Price }}</span>
-                                        {{ if .Params.Variants }}
-                                        <br>
+                                            <h3 class="ec-title">
+                                                <a href="{{ .Permalink }}">
+                                                    <script>document.write(decodeURIComponent('{{ .Title }}').replaceAll('+',' '))</script>
+                                                </a>
+                                            </h3>
+                                            <div class="ec-el-price">
 
-                                        <div class="ec-pro-option">
+                                                <p class="ec-o-price">
+                                                    PKR <span id="{{ .Params.ProductID }}">
+                                                        <script>document.write(new Intl.NumberFormat().format(parseFloat('{{ .Params.Price }}')))</script>
+                                                    </span>
+                                                </p>
 
-                                            <div class="ec-pro-size">
-                                                <span>Size</span>
-                                                <ul class="ec-opt-size" data-productidsold="{{ .Params.ProductID }}">
-
-                                                    {{ range .Params.Variants }}
-                                                    <li onmouseover="changePrice(this,'{{ .variant.RetailPrice}}','{{ .variant.priceBefore}}')" data-Sizevariant="{{ .variant.Size}}" data-ProductVariantID="{{ .variant.ProductVariantID}}" data-retailprice="{{ .variant.RetailPrice}}"><a href="#" class="ec-opt-sz">{{ .variant.Size }}</a></li>
+                                                <p style="text-decoration:line-through">
+                                                    {{ if .Params.PriceBefore }}
+                                                    PKR <span id="{{ .Params.ProductID }}{{ .Params.ProductID }}">
+                                                        <script>document.write(new Intl.NumberFormat().format(parseFloat('{{ .Params.PriceBefore }}')))</script>
+                                                    </span>
+                                                    {{else}}
+                                                    <br>
                                                     {{ end }}
-                                                </ul>
+                                                </p>
                                             </div>
-                                        </div>
-                                        <br>
-                                        {{else}}
-                                        <br>
-                                        <br>
-                                        <br>
-                                        <br>
-                                        {{ end }}
-                                        <span class="rangeprice" hidden>{{ .Params.Price }}</span>
-                                        <div class="ec-link-btn">
-
+                                            <span class="rangeprice" hidden>{{ .Params.Price }}</span>
                                             {{ if .Params.Variants }}
-                                            <a class=" ec-add-to-cart" href="#a" title="Add To Cart" onclick="tempFunction(this,{{ .Title }},{{ .Params.Description }}
-                                            ,{{ with .Params.Images}} {{ range first 1 . }}{{ .image | absURL }}{{ end }}{{ end }},1,'{{ .Params.ProductID }}');" title="PKR {{ .Params.Price }} "><i class="fa fa-cart-plus" aria-hidden="true"></i> <span id="cartipda">cart</span></a>
+                                            <br>
+
+                                            <div class="ec-pro-option">
+
+                                                <div class="ec-pro-size">
+                                                    <span>Size</span>
+                                                    <ul class="ec-opt-size" data-productidsold="{{ .Params.ProductID }}">
+
+                                                        {{ range .Params.Variants }}
+                                                        <li onmouseover="changePrice(this,'{{ .variant.RetailPrice}}','{{ .variant.priceBefore}}')" data-Sizevariant="{{ .variant.Size}}" data-ProductVariantID="{{ .variant.ProductVariantID}}" data-retailprice="{{ .variant.RetailPrice}}"><a href="#" class="ec-opt-sz">{{ .variant.Size }}</a></li>
+                                                        {{ end }}
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <br>
                                             {{else}}
-                                            <a class=" ec-add-to-cart" href="#a" title="Add To Cart" onclick="Check({{ .Params.ProductID }},{{ .Title }},{{ .Params.Description }},{{ .Params.Price }}
+                                            <br>
+                                            <br>
+                                            <br>
+                                            <br>
+                                            {{ end }}
+                                            <span class="rangeprice" hidden>{{ .Params.Price }}</span>
+                                            <div class="ec-link-btn">
+
+                                                {{ if .Params.Variants }}
+                                                <a class=" ec-add-to-cart" href="#a" title="Add To Cart" onclick="tempFunction(this,{{ .Title }},{{ .Params.Description }}
+                                            ,{{ with .Params.Images}} {{ range first 1 . }}{{ .image | absURL }}{{ end }}{{ end }},1,'{{ .Params.ProductID }}');" title="PKR {{ .Params.Price }} "><i class="fa fa-cart-plus" aria-hidden="true"></i> <span id="cartipda">cart</span></a>
+                                                {{else}}
+                                                <a class=" ec-add-to-cart" href="#a" title="Add To Cart" onclick="Check({{ .Params.ProductID }},{{ .Title }},{{ .Params.Description }},{{ .Params.Price }}
                                             ,{{ with .Params.Images}} {{ range first 1 . }}{{ .image | absURL }}{{ end }}{{ end }},1,'{{ .Params.ProductID }}',''),''" title="PKR {{ .Params.Price }} "><i class="fa fa-cart-plus" aria-hidden="true"></i> <span id="cartipda">cart</span></a>
 
-                                            {{ end }}
+                                                {{ end }}
 
-                                            <div class="ec-link-icon">
-                                                <a href="{{ .Permalink }}">
-                                                    <img src="https://v1.eralive.net/assets/images/icons/quickview.svg"
-                                                         class="svg_img header_svg pro_svg" alt="wishlist" />
-                                                </a>
-                                                <a id="whatsapp{{ .Params.ProductID }}" class="whatsappcheck" title="Whatsapp" onclick="whatsapp('{{ .Params.ProductID }}','{{ .Title }}')" target="_blank" data-tip="Compare"><i class="fa fa-whatsapp" aria-hidden="true" style="font-size: 20px;"></i></a>
+                                                <div class="ec-link-icon">
+                                                    <a href="{{ .Permalink }}">
+                                                        <img src="https://v1.eralive.net/assets/images/icons/quickview.svg"
+                                                             class="svg_img header_svg pro_svg" alt="wishlist" />
+                                                    </a>
+                                                    <a id="whatsapp{{ .Params.ProductID }}" class="whatsappcheck" title="Whatsapp" onclick="whatsapp('{{ .Params.ProductID }}','{{ .Title }}')" target="_blank" data-tip="Compare"><i class="fa fa-whatsapp" aria-hidden="true" style="font-size: 20px;"></i></a>
 
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- START single card -->
                                 </div>
-                                <!-- START single card -->
+
+                                {{ end }}
+
                             </div>
-
-                            {{ end }}
-
                         </div>
-                    </div>
-                    <!-- Ec Pagination Start -->
-                    <div class="ec-pro-pagination">
-                        <!-- <span>Showing 1-12 of 21 item(s)</span> -->
-                        <ul class="ec-pro-pagination-inner" id="pagin">
+                        <!-- Ec Pagination Start -->
+                        <div class="ec-pro-pagination">
+                            <!-- <span>Showing 1-12 of 21 item(s)</span> -->
+                            <ul class="ec-pro-pagination-inner" id="pagin">
 
-                            <!-- <li><a class="next" href="#">Next <i class="ecicon eci-angle-right"></i></a></li> -->
-                        </ul>
+                                <!-- <li><a class="next" href="#">Next <i class="ecicon eci-angle-right"></i></a></li> -->
+                            </ul>
+                        </div>
+                        <!-- Ec Pagination End -->
                     </div>
-                    <!-- Ec Pagination End -->
+                    <!--Shop content End -->
                 </div>
-                <!--Shop content End -->
-            </div>
-            <!-- Sidebar Area Start -->
-            <div class="ec-shop-leftside col-lg-3 col-md-12 order-lg-first order-md-last order-md-1 order-1">
-                <div id="">
-                    <div class="ec-sidebar-heading">
-                        <h1>Filter Products By</h1>
-                    </div>
-                    <div class="ec-sidebar-wrap">
-                        <!-- Sidebar Price Block -->
-
-                        <div class="ec-sidebar-block">
-                            <div class="ec-sb-title">
-                                <h3 class="ec-sidebar-title">Sort by</h3>
-                            </div>
-                            <div class="ec-sb-block-content es-price-slider">
-                                <div class="ec-price-filter">
-
-                                    <select name="ec-select" class="form-control" style="padding-right:0px" id="pricerageallow" onchange="sort()">
-                                        <option disabled selected>Select price range</option>
-                                        <option value="byPrice">Select low to high</option>
-                                        <option value="byDistance">Select high to low</option>
-                                    </select>
-
-                                </div>
-                            </div>
+                <!-- Sidebar Area Start -->
+                <div class="ec-shop-leftside col-lg-3 col-md-12 order-lg-first order-md-last order-md-1 order-1">
+                    <div id="">
+                        <div class="ec-sidebar-heading">
+                            <h1>Filter Products By</h1>
                         </div>
-                        <br>
-                        <div class="ec-sidebar-block">
-                            <div class="ec-sb-title">
-                                <h3 class="ec-sidebar-title">Price</h3>
-                            </div>
-                            <div class="ec-sb-block-content es-price-slider">
-                                <div class="ec-price-filter">
-                                    <div id="ec-sliderPrice" class="filter__slider-price" data-min="0"
-                                         data-step="10" onclick="checkbox()" data-max="1" onmouseleave="checkbox()"></div>
+                        <div class="ec-sidebar-wrap">
+                            <!-- Sidebar Price Block -->
 
-                                    <div class="ec-price-input">
-                                        <label class="filter__label">
-                                            <input type="text"
-                                                   class="filter__input" id="sprice" onchange="checkbox()">
-                                        </label>
-                                        <span class="ec-price-divider"></span>
-                                        <label class="filter__label">
-                                            <input type="text"
-                                                   class="filter__input" id="hprice" onchange="checkbox()">
-                                        </label>
+                            <div class="ec-sidebar-block">
+                                <div class="ec-sb-title">
+                                    <h3 class="ec-sidebar-title">Sort by</h3>
+                                </div>
+                                <div class="ec-sb-block-content es-price-slider">
+                                    <div class="ec-price-filter">
+
+                                        <select name="ec-select" class="form-control" style="padding-right:0px" id="pricerageallow" onchange="sort()">
+                                            <option disabled selected>Select price range</option>
+                                            <option value="byPrice">Select low to high</option>
+                                            <option value="byDistance">Select high to low</option>
+                                        </select>
+
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <br>
-                        <!-- Sidebar Category Block -->
-                        <div class="ec-sidebar-block">
-                            <div class="ec-sb-title">
-                                <h3 class="ec-sidebar-title">Category</h3>
-                            </div>
-                            <div class="ec-sb-block-content es-price-slider">
-                                <div class="ec-price-filter">
-                                    <ul id="catulli">
-                                    </ul>
+                            <br>
+                            <div class="ec-sidebar-block">
+                                <div class="ec-sb-title">
+                                    <h3 class="ec-sidebar-title">Price</h3>
+                                </div>
+                                <div class="ec-sb-block-content es-price-slider">
+                                    <div class="ec-price-filter">
+                                        <div id="ec-sliderPrice" class="filter__slider-price" data-min="0"
+                                             data-step="10" onclick="checkbox()" data-max="1" onmouseleave="checkbox()"></div>
+
+                                        <div class="ec-price-input">
+                                            <label class="filter__label">
+                                                <input type="text"
+                                                       class="filter__input" id="sprice" onchange="checkbox()">
+                                            </label>
+                                            <span class="ec-price-divider"></span>
+                                            <label class="filter__label">
+                                                <input type="text"
+                                                       class="filter__input" id="hprice" onchange="checkbox()">
+                                            </label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+                            <br>
+                            <!-- Sidebar Category Block -->
+                            <div class="ec-sidebar-block">
+                                <div class="ec-sb-title">
+                                    <h3 class="ec-sidebar-title">Category</h3>
+                                </div>
+                                <div class="ec-sb-block-content es-price-slider">
+                                    <div class="ec-price-filter">
+                                        <ul id="catulli">
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
                         </div>
-
-
-
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 </section>
 <!-- End Shop page -->
 <!-- products -->
