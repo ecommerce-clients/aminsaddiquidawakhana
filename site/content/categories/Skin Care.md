@@ -1,4 +1,0 @@
----
-name: 'Skin Care'  
-picture: ''  
----
