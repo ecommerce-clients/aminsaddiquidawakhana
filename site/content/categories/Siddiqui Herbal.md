@@ -1,4 +1,0 @@
----
-name: 'Siddiqui Herbal'  
-picture: ''  
----
