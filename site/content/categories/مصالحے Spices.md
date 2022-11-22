@@ -1,4 +1,0 @@
----
-name: 'مصالحے Spices'  
-picture: ''  
----
