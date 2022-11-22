@@ -1,4 +1,0 @@
----
-name: 'Sirka"vinegar'  
-picture: ''  
----
