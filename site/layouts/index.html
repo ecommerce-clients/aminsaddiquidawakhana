@@ -60,12 +60,12 @@
 <section class="ec-page-content">
     <div class="container">
         <div class="row">
-            {{ range first 2 (where site.RegularPages "Type" "products") }}
-            <div class="col-md-6 col-sm-12">
+            {{ range first 2 (where (where site.RegularPages "Type" "products") ".Params.brand" "Top2") }}
+            <div class="col-md-6 col-sm-12 mb-3">
                 {{with .Params.Images}}
                 {{ range first 1 . }}
                 <div
-                    style="min-height:300px; border-radius: 10px; box-shadow:0px 0px 10px #5c5c5c61; padding: 85px 20px 0 20px; background-position: center; background-repeat: no-repeat; background-size:cover; background-image: url({{ .image | absURL}});">
+                    style="min-height:300px; border-radius: 10px; box-shadow:0px 0px 10px #5c5c5c61; padding: 85px 20px 5px 20px; background-position: center; background-repeat: no-repeat; background-size:cover; background-image: url({{ .image | absURL}});">
                     {{ end }}
                     {{ end }}
                     <div style="background-color:#ffffffc7; color:black !important; padding: 17px;border-radius: 5px;">
