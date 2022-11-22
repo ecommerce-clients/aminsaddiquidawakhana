@@ -1,4 +1,0 @@
----
-name: 'Stone دھات'  
-picture: ''  
----
