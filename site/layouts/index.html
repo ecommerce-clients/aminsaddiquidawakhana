@@ -92,17 +92,16 @@
             {{ end }}
         </div>
         <!-- Siddiqui Herbal -->
-        <div class="row mt-5">
-            <div class="ec-shop-rightside col-lg-12 col-md-12 margin-b-30">
+        <div class="row mt-3">
+            <div class="ec-shop-rightside col-lg-12 col-md-12">
                 <!-- Shop Top Selling Start -->
                 <h4>Siddiqui Herbal</h5>
                     <br />
-                    {{ if site.Data.homepage.products.enable }}
                     <!-- Shop content Start -->
                     <div class="shop-pro-content">
                         <div class="shop-pro-inner">
                             <div class="row">
-                                {{ range first 12 (where site.RegularPages "Category" "Siddiqui Herbal") }}
+                                {{ range (where (where site.RegularPages "Type" "products") ".Params.category" "Siddiqui+Herbal") }}
                                 <div class="col-lg-3 col-md-3 col-sm-3 pricesrangeclass" style="margin-bottom: 20px;"
                                     data-category="{{ .Params.Category }}" data-price="{{ .Params.Price }}">
                                     <!-- START single card -->
@@ -231,11 +230,11 @@
                             </div>
                         </div>
                     </div>
-                    {{ end }}
 
                     <!--Shop content End -->
             </div>
         </div>
+
         <hr />
         <!-- Top Selling -->
         <div class="row mt-5">
