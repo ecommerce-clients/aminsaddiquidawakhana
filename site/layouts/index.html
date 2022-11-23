@@ -84,14 +84,16 @@
         <hr/>
         <!-- Categories -->
         <div class="row mt-5">
-            {{ range (where site.RegularPages "Type" "Categories")}}
-            <div class="col-md-2 col-lg-2 col-sm-4" style="border-radius: 50%">
+            {{ range first 6 (where site.RegularPages "Type" "categories") }}
+            <div class="col-md-2 col-lg-2 col-6" style="text-align: -webkit-center;">
+                <div style="height:10em;width:10em; border-radius: 50%; background-position: center; background-repeat: no-repeat; background-size:cover; background-image: url({{ .Params.picture | absURL}});">
+                </div>
                 {{ .Params.name }}
             </div>
             {{ end }}
         </div>
         <!-- Siddiqui Herbal -->
-        <div class="row mt-3">
+        <div class="row mt-5">
             <div class="ec-shop-rightside col-lg-12 col-md-12">
                 <!-- Shop Top Selling Start -->
                 <h4>Siddiqui Herbal</h5>
