@@ -84,7 +84,7 @@
         <!-- Categories -->
         <div class="row mt-5">
             {{ range first 6 (where site.RegularPages "Type" "categories") }}
-            <div class="col-md-2 col-lg-2 col-6" style="text-align: -webkit-center; cursor:pointer">
+            <div class="col-md-2 col-lg-2 col-6" style="text-align: -webkit-center; cursor:pointer; font-weight: 600;">
                 <div style="height:10em; width:10em; box-shadow:0px 0px 20px -9px rgb(26 25 25); border-radius: 50%; background-position: center; background-repeat: no-repeat; background-size:cover; background-image: url({{ .Params.picture | absURL}});">
                 </div>
                 <br/>
