@@ -1,4 +1,0 @@
----
-name: 'Special Items'  
-picture: ''  
----
